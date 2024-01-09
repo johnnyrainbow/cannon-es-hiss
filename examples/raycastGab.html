@@ -17,44 +17,29 @@
      * For demonstrating events.
      */
 
-    let world;
     const demo = new Demo()
 
     demo.addScene("'collide' event", function () {
-      world = setupWorld(demo)
+      const world = setupWorld(demo)
 
       const size = 0.5
 
       // Sphere
-      const sphere = new CANNON.Box(new CANNON.Vec3(size, size, size))
-      const sphereBody = new CANNON.Body({ mass: 0 })
-      sphereBody.allowSleep = true;
-      sphereBody.sleep()
+      const sphere = new CANNON.Box(new CANNON.Vec3(size))
+      const sphereBody = new CANNON.Body({ mass: 30 })
       sphereBody.addShape(sphere)
-      sphereBody.position.set(0, size, 0)
+      sphereBody.position.set(0, size * 6, 0)
       world.addBody(sphereBody)
       demo.addVisual(sphereBody)
 
       // When a body collides with another body, they both dispatch the "collide" event.
-
+  
     })
-    window.addEventListener('click', (event) => {
-      console.log("sending raycast2")
-      let from = new CANNON.Vec3(0, 0, -5)
-      let to = new CANNON.Vec3(0, 0, 5);
 
-
-      world.raycastAll(from, to, { from, to }, (result) => {
-        console.log("RAYCAST RES", result)
-
-      })
-    });
     demo.start()
 
     function setupWorld(demo) {
-      world = new CANNON.World({
-        gravity: new CANNON.Vec3(0, -25.8, 0), // m/s²
-      })
+      const world = demo.getWorld()
       world.gravity.set(0, -20, 0)
 
       // Tweak contact properties.
@@ -71,7 +56,6 @@
       groundBody.quaternion.setFromEuler(-Math.PI / 2, 0, 0)
       world.addBody(groundBody)
       demo.addVisual(groundBody)
-
 
       return world
     }

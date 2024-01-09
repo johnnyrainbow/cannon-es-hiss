@@ -327,6 +327,7 @@ export class World extends EventTarget {
     options.from = from
     options.to = to
     options.callback = callback
+    console.log('babe im RAYYYYCASTING3')
     return tmpRay.intersectWorld(this, options)
   }
 

@@ -28,7 +28,7 @@ export const RAY_MODES = {
 /**
  * RayMode
  */
-export type RayMode = typeof RAY_MODES[keyof typeof RAY_MODES]
+export type RayMode = (typeof RAY_MODES)[keyof typeof RAY_MODES]
 
 /**
  * RayOptions
@@ -214,6 +214,7 @@ export class Ray {
     this.updateDirection()
 
     this.getAABB(tmpAABB)
+    console.log('GOT AAB ', tmpAABB)
     tmpArray.length = 0
     world.broadphase.aabbQuery(world, tmpAABB, tmpArray)
     this.intersectBodies(tmpArray)
