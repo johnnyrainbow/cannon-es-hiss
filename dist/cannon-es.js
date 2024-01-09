@@ -63,7 +63,7 @@ class ObjectCollisionMatrix {
   /**
    * Set max number of objects
    */
-  setNumObjects(n) { }
+  setNumObjects(n) {}
 }
 
 /**
@@ -835,7 +835,6 @@ class AABB {
    */
 
   constructor(options = {}) {
-
     this.lowerBound = new Vec3();
     this.upperBound = new Vec3();
     if (options.lowerBound) {
@@ -910,7 +909,6 @@ class AABB {
    * @return The this object, for chainability
    */
   copy(aabb) {
-    console.log("copying bounds ", aabb.lowerBound)
     this.lowerBound.copy(aabb.lowerBound);
     this.upperBound.copy(aabb.upperBound);
     return this;
@@ -948,15 +946,11 @@ class AABB {
     //      |---------|
     // |--------|
     // l1       u1
-    console.log(l1, u1, l2, u2)
-
 
     const overlapsX = l2.x <= u1.x && u1.x <= u2.x || l1.x <= u2.x && u2.x <= u1.x;
     const overlapsY = l2.y <= u1.y && u1.y <= u2.y || l1.y <= u2.y && u2.y <= u1.y;
     const overlapsZ = l2.z <= u1.z && u1.z <= u2.z || l1.z <= u2.z && u2.z <= u1.z;
-    const res = overlapsX && overlapsY && overlapsZ;
-    console.log("returning res", res)
-    return res;
+    return overlapsX && overlapsY && overlapsZ;
   }
 
   // Mostly for debugging
@@ -2226,9 +2220,9 @@ class ConvexPolyhedron extends Shape {
     for (let i = 0; i < hullA.faces.length; i++) {
       for (let j = 0; j < hullA.faces[i].length; j++) {
         if ( /* Sharing a vertex*/
-          polyA.indexOf(hullA.faces[i][j]) !== -1 && /* Not the one we are looking for connections from */
-          i !== closestFaceA && /* Not already added */
-          polyA.connectedFaces.indexOf(i) === -1) {
+        polyA.indexOf(hullA.faces[i][j]) !== -1 && /* Not the one we are looking for connections from */
+        i !== closestFaceA && /* Not already added */
+        polyA.connectedFaces.indexOf(i) === -1) {
           polyA.connectedFaces.push(i);
         }
       }
@@ -3310,9 +3304,7 @@ class Body extends EventTarget {
     const orientation = tmpQuat;
     const bodyQuat = this.quaternion;
     const aabb = this.aabb;
-
     const shapeAABB = updateAABB_shapeAABB;
-
     for (let i = 0; i !== N; i++) {
       const shape = shapes[i];
 
@@ -3322,14 +3314,12 @@ class Body extends EventTarget {
 
       // Get shape world quaternion
       bodyQuat.mult(shapeOrientations[i], orientation);
-      console.log("pre copy")
+
       // Get shape AABB
       shape.calculateWorldAABB(offset, orientation, shapeAABB.lowerBound, shapeAABB.upperBound);
       if (i === 0) {
-        console.log("Doing a copy")
         if (sleepingUpdate) {
-          console.log("sleeping copy")
-          this.sleepingaabb.copy(shapeAABB)
+          this.sleepingaabb.copy(shapeAABB);
         } else {
           aabb.copy(shapeAABB);
         }
@@ -3345,7 +3335,7 @@ class Body extends EventTarget {
    */
   updateInertiaWorld(force) {
     const I = this.invInertia;
-    if (I.x === I.y && I.y === I.z && !force); else {
+    if (I.x === I.y && I.y === I.z && !force) ; else {
       const m1 = uiw_m1;
       const m2 = uiw_m2;
       uiw_m3;
@@ -3485,7 +3475,6 @@ class Body extends EventTarget {
     const fixed = this.fixedRotation;
 
     // Approximate with AABB box
-    console.log("Update mass")
     this.updateAABB();
     halfExtents.set((this.aabb.upperBound.x - this.aabb.lowerBound.x) / 2, (this.aabb.upperBound.y - this.aabb.lowerBound.y) / 2, (this.aabb.upperBound.z - this.aabb.lowerBound.z) / 2);
     Box.calculateInertia(halfExtents, this.mass, I);
@@ -3621,7 +3610,7 @@ class Broadphase {
     // Check types
     if (((bodyA.type & Body.STATIC) !== 0 || bodyA.sleepState === Body.SLEEPING) && ((bodyB.type & Body.STATIC) !== 0 || bodyB.sleepState === Body.SLEEPING)) {
       // Both bodies are static or sleeping. Skip.
-      return true;
+      return false;
     }
     return true;
   }
@@ -3704,7 +3693,7 @@ class Broadphase {
   /**
    * To be implemented by subcasses
    */
-  setWorld(world) { }
+  setWorld(world) {}
 
   /**
    * Check if the bounding spheres of two bodies overlap.
@@ -4025,18 +4014,19 @@ class NaiveBroadphase extends Broadphase {
    * @param result An array to store resulting bodies in.
    */
   aabbQuery(world, aabb, result = []) {
-
     for (let i = 0; i < world.bodies.length; i++) {
       const b = world.bodies[i];
       if (b.aabbNeedsUpdate) {
-        console.log("RIGHT HERE GUB")
-        b.updateAABB();
+        b.updateAABB(false);
+      } else {
+        //todo also add static case
+        if (b.sleepState == Body.SLEEPING) {
+          b.updateAABB(true);
+        }
       }
-      b.updateAABB(true)
 
       // Ugly hack until Body gets aabb
-      if (b.sleepingaabb.overlaps(aabb)) {
-        console.log("overlaps")
+      if (b.aabb.overlaps(aabb) || b.sleepingaabb.overlaps(aabb)) {
         result.push(b);
       }
     }
@@ -4261,7 +4251,7 @@ class Ray {
     this.mode = Ray.ANY;
     this.result = new RaycastResult();
     this.hasHit = false;
-    this.callback = result => { };
+    this.callback = result => {};
   }
 
   /**
@@ -4269,7 +4259,6 @@ class Ray {
    * @return True if the ray hit anything, otherwise false.
    */
   intersectWorld(world, options) {
-
     this.mode = options.mode || Ray.ANY;
     this.result = options.result || new RaycastResult();
     this.skipBackfaces = !!options.skipBackfaces;
@@ -4278,22 +4267,18 @@ class Ray {
     this.checkCollisionResponse = typeof options.checkCollisionResponse !== 'undefined' ? options.checkCollisionResponse : true;
     if (options.from) {
       this.from.copy(options.from);
-
     }
     if (options.to) {
       this.to.copy(options.to);
-
     }
-    this.callback = options.callback || (() => { });
+    this.callback = options.callback || (() => {});
     this.hasHit = false;
     this.result.reset();
     this.updateDirection();
     this.getAABB(tmpAABB$1);
-
-
+    console.log('GOT AAB ', tmpAABB$1);
     tmpArray.length = 0;
     world.broadphase.aabbQuery(world, tmpAABB$1, tmpArray);
-
     this.intersectBodies(tmpArray);
     return this.hasHit;
   }
@@ -4415,8 +4400,6 @@ class Ray {
     } = aabb;
     const to = this.to;
     const from = this.from;
-    console.log("aabb gab", to, from)
-
     lowerBound.x = Math.min(to.x, from.x);
     lowerBound.y = Math.min(to.y, from.y);
     lowerBound.z = Math.min(to.z, from.z);
@@ -6575,7 +6558,7 @@ class RaycastVehicle {
     this.indexForwardAxis = typeof options.indexForwardAxis !== 'undefined' ? options.indexForwardAxis : 0;
     this.indexUpAxis = typeof options.indexUpAxis !== 'undefined' ? options.indexUpAxis : 1;
     this.constraints = [];
-    this.preStepCallback = () => { };
+    this.preStepCallback = () => {};
     this.currentVehicleSpeedKmHour = 0;
     this.numWheelsOnGround = 0;
   }
@@ -8066,8 +8049,8 @@ class Heightfield extends Shape {
     if (!getUpperTriangle) {
       // Center of the triangle pillar - all polygons are given relative to this one
       offsetResult.set((xi + 0.25) * elementSize,
-        // sort of center of a triangle
-        (yi + 0.25) * elementSize, h // vertical center
+      // sort of center of a triangle
+      (yi + 0.25) * elementSize, h // vertical center
       );
 
       // Top triangle verts
@@ -8110,8 +8093,8 @@ class Heightfield extends Shape {
     } else {
       // Center of the triangle pillar - all polygons are given relative to this one
       offsetResult.set((xi + 0.75) * elementSize,
-        // sort of center of a triangle
-        (yi + 0.75) * elementSize, h // vertical center
+      // sort of center of a triangle
+      (yi + 0.75) * elementSize, h // vertical center
       );
 
       // Top triangle verts
@@ -11227,9 +11210,7 @@ class World extends EventTarget {
     options.from = from;
     options.to = to;
     options.callback = callback;
-    console.log("from", from)
-    console.log("to", to)
-
+    console.log('babe im RAYYYYCASTING3');
     return tmpRay.intersectWorld(this, options);
   }
 
@@ -11506,8 +11487,8 @@ class World extends EventTarget {
     }
     this.frictionEquations.length = 0;
     this.narrowphase.getContacts(p1, p2, this, contacts, oldcontacts,
-      // To be reused
-      this.frictionEquations, frictionEquationPool);
+    // To be reused
+    this.frictionEquations, frictionEquationPool);
     if (doProfiling) {
       profile.narrowphase = performance.now() - profilingStart;
     }

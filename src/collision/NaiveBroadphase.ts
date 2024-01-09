@@ -1,6 +1,6 @@
 import { Broadphase } from '../collision/Broadphase'
 import type { AABB } from '../collision/AABB'
-import type { Body } from '../objects/Body'
+import { Body } from '../objects/Body'
 import type { World } from '../world/World'
 
 /**
@@ -49,11 +49,16 @@ export class NaiveBroadphase extends Broadphase {
       const b = world.bodies[i]
 
       if (b.aabbNeedsUpdate) {
-        b.updateAABB()
+        b.updateAABB(false)
+      } else {
+        //todo also add static case
+        if (b.sleepState == Body.SLEEPING) {
+          b.updateAABB(true)
+        }
       }
 
       // Ugly hack until Body gets aabb
-      if (b.aabb.overlaps(aabb)) {
+      if (b.aabb.overlaps(aabb) || b.sleepingaabb.overlaps(aabb)) {
         result.push(b)
       }
     }

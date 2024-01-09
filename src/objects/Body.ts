@@ -23,7 +23,7 @@ export const BODY_TYPES = {
 /**
  * BodyType
  */
-export type BodyType = typeof BODY_TYPES[keyof typeof BODY_TYPES]
+export type BodyType = (typeof BODY_TYPES)[keyof typeof BODY_TYPES]
 
 /**
  * BODY_SLEEP_STATES
@@ -40,7 +40,7 @@ export const BODY_SLEEP_STATES = {
 /**
  * BodySleepState
  */
-export type BodySleepState = typeof BODY_SLEEP_STATES[keyof typeof BODY_SLEEP_STATES]
+export type BodySleepState = (typeof BODY_SLEEP_STATES)[keyof typeof BODY_SLEEP_STATES]
 
 export type BodyOptions = ConstructorParameters<typeof Body>[0]
 
@@ -314,6 +314,8 @@ export class Body extends EventTarget {
    */
   aabb: AABB
 
+  sleepingaabb: AABB
+
   /**
    * Indicates if the AABB needs to be updated before use.
    */
@@ -524,6 +526,7 @@ export class Body extends EventTarget {
     }
 
     this.aabb = new AABB()
+    this.sleepingaabb = new AABB()
     this.aabbNeedsUpdate = true
     this.boundingRadius = 0
     this.wlambda = new Vec3()
@@ -707,7 +710,7 @@ export class Body extends EventTarget {
   /**
    * Updates the .aabb
    */
-  updateAABB(): void {
+  updateAABB(sleepingUpdate?: boolean): void {
     const shapes = this.shapes
     const shapeOffsets = this.shapeOffsets
     const shapeOrientations = this.shapeOrientations
@@ -732,7 +735,11 @@ export class Body extends EventTarget {
       shape.calculateWorldAABB(offset, orientation, shapeAABB.lowerBound, shapeAABB.upperBound)
 
       if (i === 0) {
-        aabb.copy(shapeAABB)
+        if (sleepingUpdate) {
+          this.sleepingaabb.copy(shapeAABB)
+        } else {
+          aabb.copy(shapeAABB)
+        }
       } else {
         aabb.extend(shapeAABB)
       }

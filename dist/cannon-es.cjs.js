@@ -3129,6 +3129,7 @@ class Body extends EventTarget {
       this.angularFactor.copy(options.angularFactor);
     }
     this.aabb = new AABB();
+    this.sleepingaabb = new AABB();
     this.aabbNeedsUpdate = true;
     this.boundingRadius = 0;
     this.wlambda = new Vec3();
@@ -3298,7 +3299,7 @@ class Body extends EventTarget {
   /**
    * Updates the .aabb
    */
-  updateAABB() {
+  updateAABB(sleepingUpdate) {
     const shapes = this.shapes;
     const shapeOffsets = this.shapeOffsets;
     const shapeOrientations = this.shapeOrientations;
@@ -3321,7 +3322,11 @@ class Body extends EventTarget {
       // Get shape AABB
       shape.calculateWorldAABB(offset, orientation, shapeAABB.lowerBound, shapeAABB.upperBound);
       if (i === 0) {
-        aabb.copy(shapeAABB);
+        if (sleepingUpdate) {
+          this.sleepingaabb.copy(shapeAABB);
+        } else {
+          aabb.copy(shapeAABB);
+        }
       } else {
         aabb.extend(shapeAABB);
       }
@@ -3609,7 +3614,7 @@ class Broadphase {
     // Check types
     if (((bodyA.type & Body.STATIC) !== 0 || bodyA.sleepState === Body.SLEEPING) && ((bodyB.type & Body.STATIC) !== 0 || bodyB.sleepState === Body.SLEEPING)) {
       // Both bodies are static or sleeping. Skip.
-      return true;
+      return false;
     }
     return true;
   }
@@ -4016,11 +4021,16 @@ class NaiveBroadphase extends Broadphase {
     for (let i = 0; i < world.bodies.length; i++) {
       const b = world.bodies[i];
       if (b.aabbNeedsUpdate) {
-        b.updateAABB();
+        b.updateAABB(false);
+      } else {
+        //todo also add static case
+        if (b.sleepState == Body.SLEEPING) {
+          b.updateAABB(true);
+        }
       }
 
       // Ugly hack until Body gets aabb
-      if (b.aabb.overlaps(aabb)) {
+      if (b.aabb.overlaps(aabb) || b.sleepingaabb.overlaps(aabb)) {
         result.push(b);
       }
     }
@@ -4270,6 +4280,7 @@ class Ray {
     this.result.reset();
     this.updateDirection();
     this.getAABB(tmpAABB$1);
+    console.log('GOT AAB ', tmpAABB$1);
     tmpArray.length = 0;
     world.broadphase.aabbQuery(world, tmpAABB$1, tmpArray);
     this.intersectBodies(tmpArray);
@@ -11203,7 +11214,7 @@ class World extends EventTarget {
     options.from = from;
     options.to = to;
     options.callback = callback;
-    console.log("babe im RAYYYYCASTING2");
+    console.log('babe im RAYYYYCASTING3');
     return tmpRay.intersectWorld(this, options);
   }
 

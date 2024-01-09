@@ -510,7 +510,7 @@ declare module "collision/Broadphase" {
 declare module "collision/NaiveBroadphase" {
     import { Broadphase } from "collision/Broadphase";
     import type { AABB } from "collision/AABB";
-    import type { Body } from "objects/Body";
+    import { Body } from "objects/Body";
     import type { World } from "world/World";
     export class NaiveBroadphase extends Broadphase {
         constructor();
@@ -885,7 +885,7 @@ declare module "collision/Ray" {
         readonly ANY: 2;
         readonly ALL: 4;
     };
-    export type RayMode = typeof RAY_MODES[keyof typeof RAY_MODES];
+    export type RayMode = (typeof RAY_MODES)[keyof typeof RAY_MODES];
     export type RayOptions = {
         from?: Vec3;
         to?: Vec3;
@@ -1059,6 +1059,7 @@ declare module "objects/Body" {
         linearFactor: Vec3;
         angularFactor: Vec3;
         aabb: AABB;
+        sleepingaabb: AABB;
         aabbNeedsUpdate: boolean;
         boundingRadius: number;
         wlambda: Vec3;
@@ -1096,7 +1097,7 @@ declare module "objects/Body" {
         addShape(shape: Shape, _offset?: Vec3, _orientation?: Quaternion): Body;
         removeShape(shape: Shape): Body;
         updateBoundingRadius(): void;
-        updateAABB(): void;
+        updateAABB(sleepingUpdate?: boolean): void;
         updateInertiaWorld(force?: boolean): void;
         applyForce(force: Vec3, relativePoint?: Vec3): void;
         applyLocalForce(localForce: Vec3, localPoint?: Vec3): void;
