@@ -193,7 +193,7 @@ class VoxelLandscape {
         box.yi * sy + box.ny * sy * 0.5,
         box.zi * sz + box.nz * sz * 0.5
       )
-
+      console.log('adding box ')
       // Replace box shapes
       box.addShape(new CANNON.Box(new CANNON.Vec3(box.nx * sx * 0.5, box.ny * sy * 0.5, box.nz * sz * 0.5)))
       // box.aabbNeedsUpdate = true

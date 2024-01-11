@@ -76,8 +76,8 @@
 
       // Number of voxels
       const nx = 50
-      const ny = 8
-      const nz = 50
+      const ny = 10
+      const nz = 100
 
       // Scale of voxels
       const sx = 0.5
@@ -112,32 +112,37 @@
         document.body.appendChild(stats.dom)
 
         // Lights
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.1)
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
         scene.add(ambientLight)
 
-        const spotlight = new THREE.SpotLight(0xffffff, 0.7, 0, Math.PI / 4, 1)
-        spotlight.position.set(10, 30, 20)
-        spotlight.target.position.set(0, 0, 0)
+        const dirLight = new THREE.DirectionalLight(0xFFFFFF, 10);
+        dirLight.castShadow = true;
+        dirLight.position.x = 0;
+        dirLight.position.z = 0;
+        dirLight.position.y = 1000;
+        scene.add(dirLight);
 
-        spotlight.castShadow = true
+        // spotlight.castShadow = true
 
-        spotlight.shadow.camera.near = 20
-        spotlight.shadow.camera.far = 50
-        spotlight.shadow.camera.fov = 40
+        // spotlight.shadow.camera.near = 20
+        // spotlight.shadow.camera.far = 50
+        // spotlight.shadow.camera.fov = 40
 
-        spotlight.shadow.bias = -0.001
-        spotlight.shadow.mapSize.width = 2048
-        spotlight.shadow.mapSize.height = 2048
+        // spotlight.shadow.bias = -0.001
+        // spotlight.shadow.mapSize.width = 2048
+        // spotlight.shadow.mapSize.height = 2048
 
-        scene.add(spotlight)
+        // scene.add(spotlight)
 
         // Generic material
-        material = new THREE.MeshLambertMaterial({ color: 0xdddddd })
+        material = new THREE.MeshLambertMaterial({ color: 0xe3e3e3 })
+        const material2 = new THREE.MeshLambertMaterial({ color: 0x000000 })
+
 
         // Floor
-        const floorGeometry = new THREE.PlaneBufferGeometry(300, 300, 50, 50)
+        const floorGeometry = new THREE.PlaneBufferGeometry(500, 500, 50, 50)
         floorGeometry.rotateX(-Math.PI / 2)
-        floor = new THREE.Mesh(floorGeometry, material)
+        floor = new THREE.Mesh(floorGeometry, material2)
         floor.receiveShadow = true
         scene.add(floor)
 
