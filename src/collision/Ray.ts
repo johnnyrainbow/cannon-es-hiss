@@ -711,7 +711,7 @@ export class Ray {
     switch (this.mode) {
       case Ray.ALL:
         this.hasHit = true
-        result.set(from, to, normal, hitPointWorld, shape, body, distance)
+        result.set(from, to, normal, hitPointWorld, shape, body, distance, hitFaceIndex)
         result.hasHit = true
         this.callback(result)
         break
@@ -721,7 +721,7 @@ export class Ray {
         if (distance < result.distance || !result.hasHit) {
           this.hasHit = true
           result.hasHit = true
-          result.set(from, to, normal, hitPointWorld, shape, body, distance)
+          result.set(from, to, normal, hitPointWorld, shape, body, distance, hitFaceIndex)
         }
         break
 
@@ -729,7 +729,7 @@ export class Ray {
         // Report and stop.
         this.hasHit = true
         result.hasHit = true
-        result.set(from, to, normal, hitPointWorld, shape, body, distance)
+        result.set(from, to, normal, hitPointWorld, shape, body, distance, hitFaceIndex)
         result.shouldStop = true
         break
     }

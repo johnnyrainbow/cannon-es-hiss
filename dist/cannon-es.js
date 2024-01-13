@@ -4117,7 +4117,7 @@ class RaycastResult {
   /**
    * Set result data.
    */
-  set(rayFromWorld, rayToWorld, hitNormalWorld, hitPointWorld, shape, body, distance) {
+  set(rayFromWorld, rayToWorld, hitNormalWorld, hitPointWorld, shape, body, distance, hitFaceIndex) {
     this.rayFromWorld.copy(rayFromWorld);
     this.rayToWorld.copy(rayToWorld);
     this.hitNormalWorld.copy(hitNormalWorld);
@@ -4125,6 +4125,7 @@ class RaycastResult {
     this.shape = shape;
     this.body = body;
     this.distance = distance;
+    this.hitFaceIndex = hitFaceIndex;
   }
 }
 
@@ -4688,7 +4689,7 @@ class Ray {
     switch (this.mode) {
       case Ray.ALL:
         this.hasHit = true;
-        result.set(from, to, normal, hitPointWorld, shape, body, distance);
+        result.set(from, to, normal, hitPointWorld, shape, body, distance, hitFaceIndex);
         result.hasHit = true;
         this.callback(result);
         break;
@@ -4697,14 +4698,14 @@ class Ray {
         if (distance < result.distance || !result.hasHit) {
           this.hasHit = true;
           result.hasHit = true;
-          result.set(from, to, normal, hitPointWorld, shape, body, distance);
+          result.set(from, to, normal, hitPointWorld, shape, body, distance, hitFaceIndex);
         }
         break;
       case Ray.ANY:
         // Report and stop.
         this.hasHit = true;
         result.hasHit = true;
-        result.set(from, to, normal, hitPointWorld, shape, body, distance);
+        result.set(from, to, normal, hitPointWorld, shape, body, distance, hitFaceIndex);
         result.shouldStop = true;
         break;
     }
