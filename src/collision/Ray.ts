@@ -708,6 +708,7 @@ export class Ray {
 
     result.hitFaceIndex = typeof hitFaceIndex !== 'undefined' ? hitFaceIndex : -1
 
+    console.log('SIR YOUR UDPATE IS IN!')
     switch (this.mode) {
       case Ray.ALL:
         this.hasHit = true
