@@ -4281,7 +4281,7 @@ class Ray {
     this.result.reset();
     this.updateDirection();
     this.getAABB(tmpAABB$1);
-    console.log('GOT AAB ', tmpAABB$1);
+    // console.log('GOT AAB ', tmpAABB)
     tmpArray.length = 0;
     world.broadphase.aabbQuery(world, tmpAABB$1, tmpArray);
     this.intersectBodies(tmpArray);
@@ -4690,7 +4690,8 @@ class Ray {
       return;
     }
     result.hitFaceIndex = typeof hitFaceIndex !== 'undefined' ? hitFaceIndex : -1;
-    console.log("SIR YOUR UDPATE IS IN!");
+
+    // console.log('SIR YOUR UDPATE IS IN!')
     switch (this.mode) {
       case Ray.ALL:
         this.hasHit = true;
