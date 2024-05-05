@@ -214,7 +214,7 @@ export class Ray {
     this.updateDirection()
 
     this.getAABB(tmpAABB)
-    console.log('GOT AAB ', tmpAABB)
+    // console.log('GOT AAB ', tmpAABB)
     tmpArray.length = 0
     world.broadphase.aabbQuery(world, tmpAABB, tmpArray)
     this.intersectBodies(tmpArray)
@@ -708,7 +708,7 @@ export class Ray {
 
     result.hitFaceIndex = typeof hitFaceIndex !== 'undefined' ? hitFaceIndex : -1
 
-    console.log('SIR YOUR UDPATE IS IN!')
+    // console.log('SIR YOUR UDPATE IS IN!')
     switch (this.mode) {
       case Ray.ALL:
         this.hasHit = true

@@ -66,5 +66,8 @@
   },
   "lint-staged": {
     "*.{js,json,jsx,ts,tsx,md,yaml,yml}": "prettier --write"
+  },
+  "dependencies": {
+    "cannon-es-debugger": "^1.0.0"
   }
 }
