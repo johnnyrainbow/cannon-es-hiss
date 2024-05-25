@@ -1025,6 +1025,7 @@ declare module "objects/Body" {
         interpolatedPosition: Vec3;
         initPosition: Vec3;
         velocity: Vec3;
+        customIndependentVelocity: Vec3;
         initVelocity: Vec3;
         force: Vec3;
         mass: number;
