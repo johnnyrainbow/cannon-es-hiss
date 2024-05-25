@@ -3517,15 +3517,16 @@ class Body extends EventTarget {
     const velo = this.velocity;
     const angularVelo = this.angularVelocity;
     const pos = this.position;
-    this.force;
+    const force = this.force;
     const torque = this.torque;
     const quat = this.quaternion;
-    this.invMass;
+    const invMass = this.invMass;
     const invInertia = this.invInertiaWorld;
-    this.linearFactor;
+    const linearFactor = this.linearFactor;
+    const iMdt = invMass * dt;
     //hmm?
     // velo.x += force.x * iMdt * linearFactor.x
-    // velo.y += force.y * iMdt * linearFactor.y
+    velo.y += force.y * iMdt * linearFactor.y;
     // velo.z += force.z * iMdt * linearFactor.z
 
     const e = invInertia.elements;
