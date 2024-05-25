@@ -169,6 +169,10 @@ export class Body extends EventTarget {
   velocity: Vec3
 
   /**
+   * GAB CUSTOM for preventing player moving by external forces on XZ
+   */
+  customIndependentVelocity: Vec3
+  /**
    * Initial velocity of the body.
    */
   initVelocity: Vec3
@@ -452,7 +456,7 @@ export class Body extends EventTarget {
     }
 
     this.velocity = new Vec3()
-
+    this.customIndependentVelocity = new Vec3()
     if (options.velocity) {
       this.velocity.copy(options.velocity)
     }
@@ -979,10 +983,14 @@ export class Body extends EventTarget {
     angularVelo.z += dt * (e[6] * tx + e[7] * ty + e[8] * tz)
 
     // Use new velocity  - leap frog
-    pos.x += velo.x * dt
+    pos.x += this.customIndependentVelocity.x * dt
     pos.y += velo.y * dt
-    pos.z += velo.z * dt
+    pos.z += this.customIndependentVelocity.z * dt
 
+    // //clear the custom velocities after applying
+    // this.customIndependentVelocity.x = 0;
+    // this.customIndependentVelocity.y = 0;
+    // this.customIndependentVelocity.z = 0;
     quat.integrate(this.angularVelocity, dt, this.angularFactor, quat)
 
     if (quatNormalize) {
