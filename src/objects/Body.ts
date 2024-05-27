@@ -969,9 +969,9 @@ export class Body extends EventTarget {
 
     const iMdt = invMass * dt
     //hmm?
-    // velo.x += force.x * iMdt * linearFactor.x
+    velo.x += force.x * iMdt * linearFactor.x
     velo.y += force.y * iMdt * linearFactor.y
-    // velo.z += force.z * iMdt * linearFactor.z
+    velo.z += force.z * iMdt * linearFactor.z
 
     const e = invInertia.elements
     const angularFactor = this.angularFactor

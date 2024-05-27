@@ -118,12 +118,19 @@ export class GSSolver extends Solver {
       // Add result to velocity
       for (let i = 0; i !== Nbodies; i++) {
         const b = bodies[i]
-        const v = b.velocity
-        const w = b.angularVelocity
 
+        //GAB ITS HERE!!!!
+
+        //it seems the velocity will be mutated by the collision shit.
+        //so if we hit a wall, the velocity will be set to 0 here.
+        //therefore, we must apply the mutation to the customIndependentVelocity also.
+        //so that collisions will work.
+        const v = b.velocity
+        const v2 = b.customIndependentVelocity
+        const w = b.angularVelocity
         b.vlambda.vmul(b.linearFactor, b.vlambda)
         v.vadd(b.vlambda, v)
-
+        v2.vadd(b.vlambda, v2)
         b.wlambda.vmul(b.angularFactor, b.wlambda)
         w.vadd(b.wlambda, w)
       }
