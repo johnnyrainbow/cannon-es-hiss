@@ -130,7 +130,10 @@ export class GSSolver extends Solver {
         const w = b.angularVelocity
         b.vlambda.vmul(b.linearFactor, b.vlambda)
         v.vadd(b.vlambda, v)
-        v2.vadd(b.vlambda, v2)
+        if (Math.abs(v2.x) > 30 || Math.abs(v2.z) > 30) {
+          // console.log("SET CUSTOM VELO ", v2)
+          v2.vadd(b.vlambda, v2)
+        }
         b.wlambda.vmul(b.angularFactor, b.wlambda)
         w.vadd(b.wlambda, w)
       }
