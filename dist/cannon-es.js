@@ -9049,13 +9049,14 @@ class GSSolver extends Solver {
         //therefore, we must apply the mutation to the customIndependentVelocity also.
         //so that collisions will work.
         const v = b.velocity;
-        const v2 = b.customIndependentVelocity;
+        b.customIndependentVelocity;
         const w = b.angularVelocity;
         b.vlambda.vmul(b.linearFactor, b.vlambda);
-        v.vadd(b.vlambda, v);
-        if (Math.abs(v2.x) > 30 || Math.abs(v2.z) > 30) {
-          console.log('SET CUSTOM VELO ', v2);
-          v2.vadd(b.vlambda, v2);
+        // v.vadd(b.vlambda, v)
+        if (Math.abs(v.x) > 30 || Math.abs(v.z) > 30) {
+          // console.log('SET CUSTOM VELO ', v)
+          // v2.vadd(b.vlambda, v2)
+          v.vadd(b.vlambda, v);
         }
         b.wlambda.vmul(b.angularFactor, b.wlambda);
         w.vadd(b.wlambda, w);
