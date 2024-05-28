@@ -133,7 +133,7 @@ export class GSSolver extends Solver {
         v.vadd(b.vlambda, v)
         const posv2x = Math.abs(b.vlambda.x)
         const posv2z = Math.abs(b.vlambda.z)
-        v2.vadd(b.vlambda, v2)
+        // v2.vadd(b.vlambda, v2)
 
         if (posv2x > 150 || posv2z > 150) {
           // v2.vadd(b.vlambda, v2)
