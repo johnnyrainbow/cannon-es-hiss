@@ -135,8 +135,8 @@ export class GSSolver extends Solver {
         const posv2z = Math.abs(b.vlambda.z)
 
         if (posv2x > 150 || posv2z > 150) {
-          v2.vadd(b.vlambda, v2)
-          // console.log("DID YOU KNOW YOUR vlambdaoo?", b.vlambda)
+          // v2.vadd(b.vlambda, v2)
+          console.log('DID YOU KNOW YOUR vlambdaoo3?', b.vlambda)
         }
         // if (Math.abs(v2.x) > 30 || Math.abs(v2.z) > 30) {
         //   // console.log("SET CUSTOM VELOOCH ", v2)
