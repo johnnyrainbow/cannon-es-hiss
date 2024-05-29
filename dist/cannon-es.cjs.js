@@ -9059,9 +9059,13 @@ class GSSolver extends Solver {
         v.vadd(b.vlambda, v);
         Math.abs(b.vlambda.x);
         Math.abs(b.vlambda.z);
-        b.vlambda.x = parseFloat(b.vlambda.x.toFixed(2));
-        b.vlambda.y = parseFloat(b.vlambda.x.toFixed(2));
-        b.vlambda.z = parseFloat(b.vlambda.x.toFixed(2));
+        // b.vlambda.x = parseFloat(b.vlambda.x.toFixed(1))
+        // b.vlambda.y = parseFloat(b.vlambda.x.toFixed(1))
+        // b.vlambda.z = parseFloat(b.vlambda.x.toFixed(1))
+
+        b.vlambda.x = Math.round(b.vlambda.x);
+        b.vlambda.y = Math.round(b.vlambda.y);
+        b.vlambda.z = Math.round(b.vlambda.z);
         v2.vadd(b.vlambda, v2);
 
         // if (posv2x > 300 || posv2z > 300) {
