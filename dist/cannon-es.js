@@ -3539,9 +3539,9 @@ class Body extends EventTarget {
     angularVelo.z += dt * (e[6] * tx + e[7] * ty + e[8] * tz);
 
     // Use new velocity  - leap frog
-    pos.x += this.customIndependentVelocity.x * dt;
-    pos.y += velo.y * dt;
-    pos.z += this.customIndependentVelocity.z * dt;
+    pos.x += Math.floor(this.customIndependentVelocity.x) * dt;
+    pos.y += Math.floor(velo.y) * dt;
+    pos.z += Math.floor(this.customIndependentVelocity.z) * dt;
 
     // //clear the custom velocities after applying
     // this.customIndependentVelocity.x = 0;
@@ -9053,21 +9053,21 @@ class GSSolver extends Solver {
         const w = b.angularVelocity;
         b.vlambda.vmul(b.linearFactor, b.vlambda);
         v.vadd(b.vlambda, v);
-        Math.abs(b.vlambda.x);
-        Math.abs(b.vlambda.z);
+        const posv2x = Math.abs(b.vlambda.x);
+        const posv2z = Math.abs(b.vlambda.z);
         // b.vlambda.x = parseFloat(b.vlambda.x.toFixed(1))
         // b.vlambda.y = parseFloat(b.vlambda.x.toFixed(1))
         // b.vlambda.z = parseFloat(b.vlambda.x.toFixed(1))
 
-        b.vlambda.x = Math.floor(b.vlambda.x);
-        b.vlambda.y = 0;
-        b.vlambda.z = Math.floor(b.vlambda.z);
-        v2.vadd(b.vlambda, v2);
+        // v2.vadd(b.vlambda, v2)
 
-        // if (posv2x > 300 || posv2z > 300) {
-        //   v2.vadd(b.vlambda, v2)
-        console.log('DID YOU KNOW YOUR vlambdaoo5?', b.vlambda, v2);
-        // }
+        if (posv2x > 300 || posv2z > 300) {
+          v2.vadd(b.vlambda, v2);
+          b.vlambda.x = Math.floor(b.vlambda.x);
+          b.vlambda.y = 0;
+          b.vlambda.z = Math.floor(b.vlambda.z);
+          console.log('DID YOU KNOW YOUR vlambdaoo5?', b.vlambda, v2);
+        }
         // if (Math.abs(v2.x) > 30 || Math.abs(v2.z) > 30) {
         //   // console.log("SET CUSTOM VELOOCH ", v2)
         //   v2.vadd(b.vlambda, v2)
