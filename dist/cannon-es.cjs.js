@@ -3544,7 +3544,7 @@ class Body extends EventTarget {
 
     // Use new velocity  - leap frog
     pos.x += Math.floor(this.customIndependentVelocity.x) * dt;
-    pos.y += Math.floor(velo.y) * dt;
+    pos.y += velo.y * dt;
     pos.z += Math.floor(this.customIndependentVelocity.z) * dt;
 
     // //clear the custom velocities after applying
