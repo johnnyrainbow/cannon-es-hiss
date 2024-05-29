@@ -3543,9 +3543,9 @@ class Body extends EventTarget {
     angularVelo.z += dt * (e[6] * tx + e[7] * ty + e[8] * tz);
 
     // Use new velocity  - leap frog
-    pos.x += Math.floor(this.customIndependentVelocity.x) * dt;
+    pos.x += parseFloat(this.customIndependentVelocity.x.toFixed(3)) * dt;
     pos.y += velo.y * dt;
-    pos.z += Math.floor(this.customIndependentVelocity.z) * dt;
+    pos.z += parseFloat(this.customIndependentVelocity.z.toFixed(3)) * dt;
 
     // //clear the custom velocities after applying
     // this.customIndependentVelocity.x = 0;
