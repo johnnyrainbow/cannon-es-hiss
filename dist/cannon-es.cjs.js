@@ -9065,13 +9065,13 @@ class GSSolver extends Solver {
 
         // v2.vadd(b.vlambda, v2)
         let modd = false;
-        if (b.vlambda.x < -300) {
+        if (b.vlambda.x < -100) {
           b.vlambda.x = -1000;
           modd = true;
         } else {
           b.vlambda.x = 0;
         }
-        if (b.vlambda.z < -300) {
+        if (b.vlambda.z < -100) {
           b.vlambda.z = -1000;
           modd = true;
         } else {
