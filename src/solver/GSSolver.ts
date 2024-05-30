@@ -161,8 +161,9 @@ export class GSSolver extends Solver {
         //   b.vlambda.z = 300
         //   modd = true
         // }
+        modd = true
         if (modd) {
-          v2.vadd(b.vlambda, v2)
+          // v2.vadd(b.vlambda, v2)
           console.log('DID YOU KNOW YOUR vlambdaoo6?', b.vlambda, v2)
         }
 
