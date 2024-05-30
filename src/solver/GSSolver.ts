@@ -150,7 +150,7 @@ export class GSSolver extends Solver {
         }
         if (modd) {
           v2.vadd(b.vlambda, v2)
-          console.log('DID YOU KNOW YOUR vlambdaoo5?', b.vlambda, v2)
+          console.log('DID YOU KNOW YOUR vlambdaoo6?', b.vlambda, v2)
         }
 
         // if (Math.abs(v2.x) > 30 || Math.abs(v2.z) > 30) {
