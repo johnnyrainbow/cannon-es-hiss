@@ -9049,25 +9049,26 @@ class GSSolver extends Solver {
         //therefore, we must apply the mutation to the customIndependentVelocity also.
         //so that collisions will work.
         const v = b.velocity;
-        const v2 = b.customIndependentVelocity;
+        b.customIndependentVelocity;
         const w = b.angularVelocity;
         b.vlambda.vmul(b.linearFactor, b.vlambda);
         v.vadd(b.vlambda, v);
-        const posv2x = Math.abs(b.vlambda.x);
-        const posv2z = Math.abs(b.vlambda.z);
+        Math.abs(b.vlambda.x);
+        Math.abs(b.vlambda.z);
         // b.vlambda.x = parseFloat(b.vlambda.x.toFixed(1))
         // b.vlambda.y = parseFloat(b.vlambda.x.toFixed(1))
         // b.vlambda.z = parseFloat(b.vlambda.x.toFixed(1))
 
         // v2.vadd(b.vlambda, v2)
 
-        if (posv2x > 300 || posv2z > 300) {
-          b.vlambda.x = Math.floor(b.vlambda.x);
-          b.vlambda.y = 0;
-          b.vlambda.z = Math.floor(b.vlambda.z);
-          v2.vadd(b.vlambda, v2);
-          console.log('DID YOU KNOW YOUR vlambdaoo5?', b.vlambda, v2);
-        }
+        // if (posv2x > 300 || posv2z > 300) {
+        //   b.vlambda.x = Math.floor(b.vlambda.x)
+        //   b.vlambda.y = 0
+        //   b.vlambda.z = Math.floor(b.vlambda.z)
+        //   v2.vadd(b.vlambda, v2)
+
+        //   console.log('DID YOU KNOW YOUR vlambdaoo5?', b.vlambda, v2)
+        // }
         // if (Math.abs(v2.x) > 30 || Math.abs(v2.z) > 30) {
         //   // console.log("SET CUSTOM VELOOCH ", v2)
         //   v2.vadd(b.vlambda, v2)
