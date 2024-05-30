@@ -9064,19 +9064,24 @@ class GSSolver extends Solver {
         if (b.vlambda.x < -300) {
           b.vlambda.x = -1000;
           modd = true;
+        } else {
+          b.vlambda.x = 0;
         }
         if (b.vlambda.z < -300) {
           b.vlambda.z = -1000;
           modd = true;
+        } else {
+          b.vlambda.z = 0;
         }
-        if (b.vlambda.x > 300) {
-          b.vlambda.x = 300;
-          modd = true;
-        }
-        if (b.vlambda.z > 300) {
-          b.vlambda.z = 300;
-          modd = true;
-        }
+        // if (b.vlambda.x > 300) {
+        //   b.vlambda.x = 300
+        //   modd = true
+        // }
+
+        // if (b.vlambda.z > 300) {
+        //   b.vlambda.z = 300
+        //   modd = true
+        // }
         if (modd) {
           v2.vadd(b.vlambda, v2);
           console.log('DID YOU KNOW YOUR vlambdaoo6?', b.vlambda, v2);
