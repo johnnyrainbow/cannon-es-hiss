@@ -138,15 +138,21 @@ export class GSSolver extends Solver {
         // b.vlambda.z = parseFloat(b.vlambda.x.toFixed(1))
 
         // v2.vadd(b.vlambda, v2)
+        let modd = false
+        if (b.vlambda.x < -300) {
+          b.vlambda.x = -300
+          modd = true
+        }
 
-        // if (posv2x > 300 || posv2z > 300) {
-        //   b.vlambda.x = Math.floor(b.vlambda.x)
-        //   b.vlambda.y = 0
-        //   b.vlambda.z = Math.floor(b.vlambda.z)
-        //   v2.vadd(b.vlambda, v2)
+        if (b.vlambda.z < -300) {
+          b.vlambda.z = -300
+          modd = true
+        }
+        if (modd) {
+          v2.vadd(b.vlambda, v2)
+          console.log('DID YOU KNOW YOUR vlambdaoo5?', b.vlambda, v2)
+        }
 
-        //   console.log('DID YOU KNOW YOUR vlambdaoo5?', b.vlambda, v2)
-        // }
         // if (Math.abs(v2.x) > 30 || Math.abs(v2.z) > 30) {
         //   // console.log("SET CUSTOM VELOOCH ", v2)
         //   v2.vadd(b.vlambda, v2)
