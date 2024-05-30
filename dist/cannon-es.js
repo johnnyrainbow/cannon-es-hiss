@@ -9069,6 +9069,14 @@ class GSSolver extends Solver {
           b.vlambda.z = -300;
           modd = true;
         }
+        if (b.vlambda.x > 300) {
+          b.vlambda.x = 300;
+          modd = true;
+        }
+        if (b.vlambda.z > 300) {
+          b.vlambda.z = 300;
+          modd = true;
+        }
         if (modd) {
           v2.vadd(b.vlambda, v2);
           console.log('DID YOU KNOW YOUR vlambdaoo6?', b.vlambda, v2);
