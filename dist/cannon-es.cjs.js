@@ -9066,11 +9066,11 @@ class GSSolver extends Solver {
         // v2.vadd(b.vlambda, v2)
         let modd = false;
         if (b.vlambda.x < -300) {
-          b.vlambda.x = -300;
+          b.vlambda.x = -1000;
           modd = true;
         }
         if (b.vlambda.z < -300) {
-          b.vlambda.z = -300;
+          b.vlambda.z = -1000;
           modd = true;
         }
         if (b.vlambda.x > 300) {
