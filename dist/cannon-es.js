@@ -9091,7 +9091,7 @@ class GSSolver extends Solver {
           v2.vadd(b.vlambda, v2);
           // if (Math.abs(b.vlambda.x) > 100 || Math.abs(b.vlambda.z) > 100) {
 
-          console.log('DID YOU KNOW YOUR vlambdaoo6?', b.vlambda);
+          console.log('DID YOU KNOW YOUR vlambdaoo7?', b.vlambda);
           // }
           //F
         }
