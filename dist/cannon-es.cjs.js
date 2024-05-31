@@ -5503,7 +5503,7 @@ class ContactEquation extends Equation {
     console.log('used pen', penetrationVec);
     console.log('used pos', bjPC, biPC);
     console.log('used ni', -g, a, GW, b, h, GiMf);
-    const B = -g * a - GW * b - h * GiMf;
+    const B = 2 * a - GW * b - h * GiMf;
     return B;
   }
 
