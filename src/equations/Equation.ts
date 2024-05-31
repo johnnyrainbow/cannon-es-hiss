@@ -126,6 +126,7 @@ export class Equation {
     const bj = this.bj
     const vi = bi.vlambda
     const vj = bj.vlambda
+    console.log(vi, vj)
     const wi = bi.wlambda
     const wj = bj.wlambda
     return GA.multiplyVectors(vi, wi) + GB.multiplyVectors(vj, wj)

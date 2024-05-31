@@ -5285,6 +5285,7 @@ class Equation {
     const bj = this.bj;
     const vi = bi.vlambda;
     const vj = bj.vlambda;
+    console.log(vi, vj);
     const wi = bi.wlambda;
     const wj = bj.wlambda;
     return GA.multiplyVectors(vi, wi) + GB.multiplyVectors(vj, wj);
@@ -9036,9 +9037,6 @@ class GSSolver extends Solver {
           }
           lambda[j] += deltalambda;
           deltalambdaTot += deltalambda > 0.0 ? deltalambda : -deltalambda; // abs(deltalambda)
-          if (deltalambda > 50) {
-            console.log(invC, B, GWlambda, c.eps, lambdaj);
-          }
           c.addToWlambda(deltalambda);
         }
 
