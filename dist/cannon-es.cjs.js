@@ -9010,10 +9010,10 @@ class GSSolver extends Solver {
     Bs.length = Neq;
     lambda.length = Neq;
     for (let i = 0; i !== Neq; i++) {
-      const c = equations[i];
+      equations[i];
       lambda[i] = 0.0;
-      Bs[i] = c.computeB(h);
-      invCs[i] = 100;
+      Bs[i] = 3300; //c.computeB(h)
+      invCs[i] = 100; //1.0 / c.computeC() 
       console.log('addedinvc', i, invCs[i]);
     }
     if (Neq !== 0) {

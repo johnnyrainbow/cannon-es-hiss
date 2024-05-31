@@ -67,8 +67,8 @@ export class GSSolver extends Solver {
     for (let i = 0; i !== Neq; i++) {
       const c = equations[i] as any
       lambda[i] = 0.0
-      Bs[i] = c.computeB(h)
-      invCs[i] = 100
+      Bs[i] = 3300 //c.computeB(h)
+      invCs[i] = 100 //1.0 / c.computeC()
       console.log('addedinvc', i, invCs[i])
     }
 
