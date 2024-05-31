@@ -167,6 +167,7 @@ export class GSSolver extends Solver {
 
           console.log('DID YOU KNOW YOUR vlambdaoo6?', b.vlambda)
           // }
+          //F
         }
 
         // if (Math.abs(v2.x) > 30 || Math.abs(v2.z) > 30) {
