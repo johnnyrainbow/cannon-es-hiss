@@ -5268,8 +5268,8 @@ class Equation {
     const GB = this.jacobianElementB;
     const bi = this.bi;
     const bj = this.bj;
-    const vi = bi.velocity;
-    const vj = bj.velocity;
+    let vi = bi.velocity;
+    let vj = bj.velocity;
     const wi = bi.angularVelocity;
     const wj = bj.angularVelocity;
     wi.x = 0;
@@ -5278,6 +5278,12 @@ class Equation {
     wj.x = 0;
     wj.y = 0;
     wj.z = 0;
+    if (bi.customIndependentVelocity.x !== 0 || bi.customIndependentVelocity.z !== 0) {
+      vi = bi.customIndependentVelocity;
+    }
+    if (bj.customIndependentVelocity.x !== 0 || bj.customIndependentVelocity.z !== 0) {
+      vj = bj.customIndependentVelocity;
+    }
     return GA.multiplyVectors(vi, wi) + GB.multiplyVectors(vj, wj);
   }
 
