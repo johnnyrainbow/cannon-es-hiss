@@ -9114,7 +9114,7 @@ class GSSolver extends Solver {
         // v2.vadd(b.vlambda, v2)
         // v2.vadd(b.vlambda, v2)
         let modd = false;
-        if (Math.abs(b.vlambda.x) > 400) {
+        if (Math.abs(b.vlambda.x) > 700) {
           // console.log('PAPA2')
           console.log('DID you knowww x', b.position, b.customIndependentVelocity, b.vlambda.x);
           if (b.vlambda.x < 0) {
@@ -9127,7 +9127,7 @@ class GSSolver extends Solver {
           b.vlambda.x = 0;
         }
         //test2
-        if (Math.abs(b.vlambda.z) > 400) {
+        if (Math.abs(b.vlambda.z) > 700) {
           console.log('DID you knowww z', b.position, b.customIndependentVelocity, b.vlambda.z);
           if (b.vlambda.z < 0) {
             b.vlambda.z = -2000;
