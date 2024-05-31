@@ -147,9 +147,9 @@ export class GSSolver extends Solver {
           // console.log('PAPA2')
           console.log('DID you knowww x', b.position, b.customIndependentVelocity, b.vlambda.x)
           if (b.vlambda.x < 0) {
-            b.vlambda.x = -2000
+            b.vlambda.x = -1000
           } else {
-            b.vlambda.x = 2000
+            b.vlambda.x = 1000
           }
           modd = true
         } else {
@@ -159,9 +159,9 @@ export class GSSolver extends Solver {
         if (Math.abs(b.vlambda.z) > 700) {
           console.log('DID you knowww z', b.position, b.customIndependentVelocity, b.vlambda.z)
           if (b.vlambda.z < 0) {
-            b.vlambda.z = -2000
+            b.vlambda.z = -1000
           } else {
-            b.vlambda.z = 2000
+            b.vlambda.z = 1000
           }
           modd = true
         } else {
