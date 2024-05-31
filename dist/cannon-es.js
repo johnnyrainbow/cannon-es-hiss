@@ -5484,6 +5484,9 @@ class ContactEquation extends Equation {
     penetrationVec.vadd(rj, penetrationVec);
     penetrationVec.vsub(biPC, penetrationVec);
     penetrationVec.vsub(ri, penetrationVec);
+    penetrationVec.x = 0;
+    penetrationVec.y = 0;
+    penetrationVec.z = 0;
     const g = n.dot(penetrationVec);
 
     // Compute iteration
