@@ -88,8 +88,8 @@ export class ContactEquation extends Equation {
     // Calculate the penetration vector
     const bjPC = new Vec3().copy(bj.position)
     const biPC = new Vec3().copy(bi.position)
-    bjPC.y = 0
-    biPC.y = 0
+    // bjPC.y = 0
+    // biPC.y = 0
     console.log('used pen pre', penetrationVec)
     penetrationVec.copy(bjPC)
     penetrationVec.vadd(rj, penetrationVec)
