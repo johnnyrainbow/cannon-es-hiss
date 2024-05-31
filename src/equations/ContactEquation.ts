@@ -125,7 +125,7 @@ export class ContactEquation extends Equation {
     this.bj.getVelocityAtWorldPoint(xj, vj)
 
     vi.vsub(vj, relVel)
-
+    console.log('RELVEL', relVel)
     return this.ni.dot(relVel)
   }
 }

@@ -5509,6 +5509,7 @@ class ContactEquation extends Equation {
     this.bi.getVelocityAtWorldPoint(xi, vi);
     this.bj.getVelocityAtWorldPoint(xj, vj);
     vi.vsub(vj, relVel);
+    console.log("RELVEL", relVel);
     return this.ni.dot(relVel);
   }
 }
