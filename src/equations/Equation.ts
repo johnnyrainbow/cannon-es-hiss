@@ -128,6 +128,12 @@ export class Equation {
     const vj = bj.vlambda
     const wi = bi.wlambda
     const wj = bj.wlambda
+    wi.x = 0
+    wi.y = 0
+    wi.z = 0
+    wj.x = 0
+    wj.y = 0
+    wj.z = 0
     console.log('computing lambda:)', vi, vj, wi, wj)
     return GA.multiplyVectors(vi, wi) + GB.multiplyVectors(vj, wj)
   }
