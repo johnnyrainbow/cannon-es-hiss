@@ -129,8 +129,6 @@ export class Equation {
       vj = bj.customIndependentVelocity
     }
 
-    vi.y = 0
-    vj.y = 0
     return GA.multiplyVectors(vi, wi) + GB.multiplyVectors(vj, wj)
   }
 

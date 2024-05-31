@@ -33,7 +33,7 @@ export class ContactEquation extends Equation {
   }
 
   computeB(h: number): number {
-    console.log('computing b CONTACT')
+    // console.log('computing b CONTACT')
 
     const a = this.a
     const b = this.b
@@ -56,8 +56,6 @@ export class ContactEquation extends Equation {
     wi.y = 0
     wi.z = 0
 
-    vi.y = 0
-    vj.y = 0
     if (bi.customIndependentVelocity.x !== 0 || bi.customIndependentVelocity.z !== 0) {
       vi = bi.customIndependentVelocity
     }

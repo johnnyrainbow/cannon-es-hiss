@@ -5285,8 +5285,6 @@ class Equation {
     if (bj.customIndependentVelocity.x !== 0 || bj.customIndependentVelocity.z !== 0) {
       vj = bj.customIndependentVelocity;
     }
-    vi.y = 0;
-    vj.y = 0;
     return GA.multiplyVectors(vi, wi) + GB.multiplyVectors(vj, wj);
   }
 
@@ -5424,7 +5422,8 @@ class ContactEquation extends Equation {
     this.ni = new Vec3();
   }
   computeB(h) {
-    console.log('computing b CONTACT');
+    // console.log('computing b CONTACT')
+
     const a = this.a;
     const b = this.b;
     const bi = this.bi;
@@ -5445,8 +5444,6 @@ class ContactEquation extends Equation {
     wi.x = 0;
     wi.y = 0;
     wi.z = 0;
-    vi.y = 0;
-    vj.y = 0;
     if (bi.customIndependentVelocity.x !== 0 || bi.customIndependentVelocity.z !== 0) {
       vi = bi.customIndependentVelocity;
     }
