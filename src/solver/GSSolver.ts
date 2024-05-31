@@ -107,7 +107,7 @@ export class GSSolver extends Solver {
 
           deltalambdaTot += deltalambda > 0.0 ? deltalambda : -deltalambda // abs(deltalambda)
           if (deltalambda > 50) {
-            // console.log(invC, B, GWlambda, c.eps, lambdaj)
+            console.log(invC, B, GWlambda, c.eps, lambdaj)
           }
           c.addToWlambda(deltalambda)
         }
