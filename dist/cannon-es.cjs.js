@@ -9013,8 +9013,8 @@ class GSSolver extends Solver {
       const c = equations[i];
       lambda[i] = 0.0;
       Bs[i] = c.computeB(h);
-      invCs[i] = 1.0 / c.computeC();
-      console.log("addedinvc", i, invCs[i]);
+      invCs[i] = 100;
+      console.log('addedinvc', i, invCs[i]);
     }
     if (Neq !== 0) {
       // Reset vlambda
