@@ -5289,7 +5289,6 @@ class Equation {
     const bj = this.bj;
     const vi = bi.vlambda;
     const vj = bj.vlambda;
-    console.log(vi, vj);
     const wi = bi.wlambda;
     const wj = bj.wlambda;
     return GA.multiplyVectors(vi, wi) + GB.multiplyVectors(vj, wj);
@@ -9031,6 +9030,7 @@ class GSSolver extends Solver {
           invC = invCs[j];
           lambdaj = lambda[j];
           GWlambda = c.computeGWlambda();
+          console.log("computed lambda", GWlambda);
           deltalambda = invC * (B - GWlambda - c.eps * lambdaj);
 
           // Clamp if we are not within the min/max interval
