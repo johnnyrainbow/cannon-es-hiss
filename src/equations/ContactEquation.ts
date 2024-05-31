@@ -43,11 +43,11 @@ export class ContactEquation extends Equation {
     const rj = this.rj
     const rixn = ContactEquation_computeB_temp1
     const rjxn = ContactEquation_computeB_temp2
-    const vi = bi.velocity
+    let vi = bi.velocity
     const wi = bi.angularVelocity
     const fi = bi.force
     const taui = bi.torque
-    const vj = bj.velocity
+    let vj = bj.velocity
     const wj = bj.angularVelocity
     wj.x = 0
     wj.y = 0
@@ -55,6 +55,16 @@ export class ContactEquation extends Equation {
     wi.x = 0
     wi.y = 0
     wi.z = 0
+
+    vi.y = 0
+    vj.y = 0
+    if (bi.customIndependentVelocity.x !== 0 || bi.customIndependentVelocity.z !== 0) {
+      vi = bi.customIndependentVelocity
+    }
+    if (bj.customIndependentVelocity.x !== 0 || bj.customIndependentVelocity.z !== 0) {
+      vj = bj.customIndependentVelocity
+    }
+
     const fj = bj.force
     const tauj = bj.torque
     const penetrationVec = ContactEquation_computeB_temp3

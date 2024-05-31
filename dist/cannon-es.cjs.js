@@ -5245,7 +5245,7 @@ class Equation {
    * Computes the right hand side of the SPOOK equation
    */
   computeB(a, b, h) {
-    console.log("computing b REGULAR");
+    console.log('computing b REGULAR');
     const GW = this.computeGW();
     const Gq = this.computeGq();
     const GiMf = this.computeGiMf();
@@ -5289,6 +5289,8 @@ class Equation {
     if (bj.customIndependentVelocity.x !== 0 || bj.customIndependentVelocity.z !== 0) {
       vj = bj.customIndependentVelocity;
     }
+    vi.y = 0;
+    vj.y = 0;
     return GA.multiplyVectors(vi, wi) + GB.multiplyVectors(vj, wj);
   }
 
@@ -5426,7 +5428,7 @@ class ContactEquation extends Equation {
     this.ni = new Vec3();
   }
   computeB(h) {
-    console.log("computing b CONTACT");
+    console.log('computing b CONTACT');
     const a = this.a;
     const b = this.b;
     const bi = this.bi;
@@ -5435,11 +5437,11 @@ class ContactEquation extends Equation {
     const rj = this.rj;
     const rixn = ContactEquation_computeB_temp1;
     const rjxn = ContactEquation_computeB_temp2;
-    const vi = bi.velocity;
+    let vi = bi.velocity;
     const wi = bi.angularVelocity;
     bi.force;
     bi.torque;
-    const vj = bj.velocity;
+    let vj = bj.velocity;
     const wj = bj.angularVelocity;
     wj.x = 0;
     wj.y = 0;
@@ -5447,6 +5449,14 @@ class ContactEquation extends Equation {
     wi.x = 0;
     wi.y = 0;
     wi.z = 0;
+    vi.y = 0;
+    vj.y = 0;
+    if (bi.customIndependentVelocity.x !== 0 || bi.customIndependentVelocity.z !== 0) {
+      vi = bi.customIndependentVelocity;
+    }
+    if (bj.customIndependentVelocity.x !== 0 || bj.customIndependentVelocity.z !== 0) {
+      vj = bj.customIndependentVelocity;
+    }
     bj.force;
     bj.torque;
     const penetrationVec = ContactEquation_computeB_temp3;
@@ -6003,7 +6013,7 @@ class FrictionEquation extends Equation {
     this.t = new Vec3();
   }
   computeB(h) {
-    console.log("computing b FRICTION");
+    console.log('computing b FRICTION');
     this.a;
     const b = this.b;
     this.bi;
