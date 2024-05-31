@@ -19,7 +19,7 @@
   "main": "./dist/cannon-es.cjs.js",
   "module": "./dist/cannon-es.js",
   "react-native": "./dist/cannon-es.js",
-  "types": "./dist/cannon-es.d.ts",
+  "types": "./dist/cannon-es-gab.d.ts",
   "sideEffects": false,
   "files": [
     "dist/"
@@ -31,7 +31,7 @@
     "build": "npm run typegen && rollup -c",
     "prepublishOnly": "npm run build && npm run test",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false --strict",
-    "typegen": "tsc --outFile dist/cannon-es.d.ts",
+    "typegen": "tsc --outFile dist/cannon-es-gab.d.ts",
     "generate-docs": "typedoc",
     "test": "jest"
   },

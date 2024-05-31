@@ -1551,7 +1551,7 @@ declare module "solver/SplitSolver" {
         solve(dt: number, world: World): number;
     }
 }
-declare module "cannon-es" {
+declare module "cannon-es-gab" {
     export * from "collision/ObjectCollisionMatrix";
     export * from "collision/AABB";
     export * from "collision/ArrayCollisionMatrix";

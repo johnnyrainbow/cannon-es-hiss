@@ -26,12 +26,12 @@ const babelOptions = {
 
 export default [
   {
-    input: `./src/cannon-es`,
+    input: `./src/cannon-es-gab`,
     output: { file: `dist/cannon-es.js`, format: 'esm' },
     plugins: [json(), resolve({ extensions }), babel(babelOptions), filesize()],
   },
   {
-    input: `./src/cannon-es`,
+    input: `./src/cannon-es-gab`,
     output: { file: `dist/cannon-es.cjs.js`, format: 'cjs' },
     plugins: [
       json(),
