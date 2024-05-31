@@ -5344,6 +5344,7 @@ class Equation {
     // GA.spatial.x = 0
     // GA.spatial.y = 0
     // GA.spatial.z = 0
+    console.log("FUCKS SAKE");
     if (bj.invMassSolve * deltalambda > 100) {
       console.log('solvey wolvey', bi.invMassSolve * deltalambda, bj.invMassSolve * deltalambda, GA.spatial);
     }
