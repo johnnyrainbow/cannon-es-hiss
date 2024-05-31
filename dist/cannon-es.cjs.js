@@ -5483,7 +5483,7 @@ class ContactEquation extends Equation {
     const biPC = new Vec3().copy(bi.position);
     // bjPC.y = 0
     // biPC.y = 0
-    console.log('used pen pre', penetrationVec, rj, ri);
+    // console.log('used pen pre', penetrationVec, rj, ri)
     penetrationVec.copy(bjPC);
     penetrationVec.vadd(rj, penetrationVec);
     penetrationVec.vsub(biPC, penetrationVec);
@@ -5502,7 +5502,7 @@ class ContactEquation extends Equation {
     console.log('used n', n);
     console.log('used pen', penetrationVec);
     console.log('used pos', bjPC, biPC);
-    g = -2;
+    // g = -2
     console.log('used ni', -g, a, GW, b, h, GiMf);
     const B = -g * a - GW * b - h * GiMf;
     return B;
@@ -9088,7 +9088,7 @@ class GSSolver extends Solver {
           invC = invCs[j];
           lambdaj = lambda[j];
           GWlambda = c.computeGWlambda();
-          console.log('computed lambda', GWlambda);
+          // console.log('computed lambda', GWlambda)
           deltalambda = invC * (B - GWlambda - c.eps * lambdaj);
 
           // Clamp if we are not within the min/max interval
@@ -9134,42 +9134,41 @@ class GSSolver extends Solver {
         // v2.vadd(b.vlambda, v2)
         console.log('DID you knowww bby', b.position, b.customIndependentVelocity, b.vlambda);
         v2.vadd(b.vlambda, v2);
-        // let modd = false
-        // if (Math.abs(b.vlambda.x) > 400) {
-        //   console.log('PAPA2')
-        //   console.log('DID you knowww x', b.position, b.customIndependentVelocity, b.vlambda.x)
-        //   if (b.vlambda.x < 0) {
-        //     b.vlambda.x = -2000
-        //   } else {
-        //     b.vlambda.x = 2000
-        //   }
-        //   modd = true
-        // } else {
-        //   b.vlambda.x = 0
-        // }
-        // //test2
-        // if (Math.abs(b.vlambda.z) > 400) {
-        //   console.log('DID you knowww z', b.position, b.customIndependentVelocity, b.vlambda.z)
-        //   if (b.vlambda.z < 0) {
-        //     b.vlambda.z = -2000
-        //   } else {
-        //     b.vlambda.z = 2000
-        //   }
-        //   modd = true
-        // } else {
-        //   b.vlambda.z = 0
-        // }
+        let modd = false;
+        if (Math.abs(b.vlambda.x) > 800) {
+          console.log('PAPA2');
+          console.log('DID you knowww x', b.position, b.customIndependentVelocity, b.vlambda.x);
+          // if (b.vlambda.x < 0) {
+          //   b.vlambda.x = -1000
+          // } else {
+          //   b.vlambda.x = 2000
+          // }
+          modd = true;
+        } else {
+          b.vlambda.x = 0;
+        }
+        //test2
+        if (Math.abs(b.vlambda.z) > 800) {
+          // console.log('DID you knowww z', b.position, b.customIndependentVelocity, b.vlambda.z)
+          // if (b.vlambda.z < 0) {
+          //   b.vlambda.z = -2000
+          // } else {
+          //   b.vlambda.z = 2000
+          // }
+          modd = true;
+        } else {
+          b.vlambda.z = 0;
+        }
 
-        // // modd = true;
-        // if (modd) {
-        //   v2.vadd(b.vlambda, v2)
-        //   // if (Math.abs(b.vlambda.x) > 100 || Math.abs(b.vlambda.z) > 100) {
+        // modd = true;
+        if (modd) {
+          v2.vadd(b.vlambda, v2);
+          // if (Math.abs(b.vlambda.x) > 100 || Math.abs(b.vlambda.z) > 100) {
 
-        //   console.log('DID YOU KNOW YOUR vlambdaoo7?', b.vlambda)
-        //   // }
-        //   //F
-        // }
-
+          console.log('DID YOU KNOW YOUR vlambdaoo7?', b.vlambda);
+          // }
+          //F
+        }
         b.wlambda.vmul(b.angularFactor, b.wlambda);
         w.vadd(b.wlambda, w);
       }

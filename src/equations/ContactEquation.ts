@@ -90,7 +90,7 @@ export class ContactEquation extends Equation {
     const biPC = new Vec3().copy(bi.position)
     // bjPC.y = 0
     // biPC.y = 0
-    console.log('used pen pre', penetrationVec, rj, ri)
+    // console.log('used pen pre', penetrationVec, rj, ri)
     penetrationVec.copy(bjPC)
     penetrationVec.vadd(rj, penetrationVec)
     penetrationVec.vsub(biPC, penetrationVec)
@@ -109,7 +109,7 @@ export class ContactEquation extends Equation {
     console.log('used n', n)
     console.log('used pen', penetrationVec)
     console.log('used pos', bjPC, biPC)
-    g = -2
+    // g = -2
     console.log('used ni', -g, a, GW, b, h, GiMf)
     const B = -g * a - GW * b - h * GiMf
 
