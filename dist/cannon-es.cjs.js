@@ -9082,47 +9082,43 @@ class GSSolver extends Solver {
         // b.vlambda.y = parseFloat(b.vlambda.x.toFixed(1))
         // b.vlambda.z = parseFloat(b.vlambda.x.toFixed(1))
         // v2.vadd(b.vlambda, v2)
-        // v2.vadd(b.vlambda, v2)
-        let modd = false;
-        if (Math.abs(b.vlambda.x) > 400) {
-          console.log('PAPA2');
-          console.log('DID you knowww x', b.position, b.customIndependentVelocity, b.vlambda.x);
-          if (b.vlambda.x < 0) {
-            b.vlambda.x = -2000;
-          } else {
-            b.vlambda.x = 2000;
-          }
-          modd = true;
-        } else {
-          b.vlambda.x = 0;
-        }
-        //test2
-        if (Math.abs(b.vlambda.z) > 400) {
-          console.log('DID you knowww z', b.position, b.customIndependentVelocity, b.vlambda.z);
-          if (b.vlambda.z < 0) {
-            b.vlambda.z = -2000;
-          } else {
-            b.vlambda.z = 2000;
-          }
-          modd = true;
-        } else {
-          b.vlambda.z = 0;
-        }
-
-        // modd = true;
-        if (modd) {
-          v2.vadd(b.vlambda, v2);
-          // if (Math.abs(b.vlambda.x) > 100 || Math.abs(b.vlambda.z) > 100) {
-
-          console.log('DID YOU KNOW YOUR vlambdaoo7?', b.vlambda);
-          // }
-          //F
-        }
-
-        // if (Math.abs(v2.x) > 30 || Math.abs(v2.z) > 30) {
-        //   // console.log("SET CUSTOM VELOOCH ", v2)
-        //   v2.vadd(b.vlambda, v2)
+        v2.vadd(b.vlambda, v2);
+        // let modd = false
+        // if (Math.abs(b.vlambda.x) > 400) {
+        //   console.log('PAPA2')
+        //   console.log('DID you knowww x', b.position, b.customIndependentVelocity, b.vlambda.x)
+        //   if (b.vlambda.x < 0) {
+        //     b.vlambda.x = -2000
+        //   } else {
+        //     b.vlambda.x = 2000
+        //   }
+        //   modd = true
+        // } else {
+        //   b.vlambda.x = 0
         // }
+        // //test2
+        // if (Math.abs(b.vlambda.z) > 400) {
+        //   console.log('DID you knowww z', b.position, b.customIndependentVelocity, b.vlambda.z)
+        //   if (b.vlambda.z < 0) {
+        //     b.vlambda.z = -2000
+        //   } else {
+        //     b.vlambda.z = 2000
+        //   }
+        //   modd = true
+        // } else {
+        //   b.vlambda.z = 0
+        // }
+
+        // // modd = true;
+        // if (modd) {
+        //   v2.vadd(b.vlambda, v2)
+        //   // if (Math.abs(b.vlambda.x) > 100 || Math.abs(b.vlambda.z) > 100) {
+
+        //   console.log('DID YOU KNOW YOUR vlambdaoo7?', b.vlambda)
+        //   // }
+        //   //F
+        // }
+
         b.wlambda.vmul(b.angularFactor, b.wlambda);
         w.vadd(b.wlambda, w);
       }
