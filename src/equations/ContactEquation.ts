@@ -98,6 +98,10 @@ export class ContactEquation extends Equation {
     const GW = ePlusOne * vj.dot(n) - ePlusOne * vi.dot(n) + wj.dot(rjxn) - wi.dot(rixn)
     const GiMf = this.computeGiMf()
 
+    //TODO variants are -g, GW, giMF
+    console.log('used n', n)
+    console.log('used pen', penetrationVec)
+    console.log('used pos', bj, bi)
     console.log('used ni', -g, a, GW, b, h, GiMf)
     const B = -g * a - GW * b - h * GiMf
 
