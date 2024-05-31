@@ -191,7 +191,9 @@ export class Equation {
     // GA.spatial.x = 0
     // GA.spatial.y = 0
     // GA.spatial.z = 0
-    // console.log('solvey wolvey', bi.invMassSolve * deltalambda, bj.invMassSolve * deltalambda)
+    if (bj.invMassSolve * deltalambda > 100) {
+      console.log('solvey wolvey', bi.invMassSolve * deltalambda, bj.invMassSolve * deltalambda, GA.spatial)
+    }
     // Add to linear velocity
     // v_lambda += inv(M) * delta_lamba * G
     bi.vlambda.addScaledVector(bi.invMassSolve * deltalambda, GA.spatial, bi.vlambda)

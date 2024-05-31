@@ -136,7 +136,7 @@ export class GSSolver extends Solver {
         // b.vlambda.x = parseFloat(b.vlambda.x.toFixed(1))
         // b.vlambda.y = parseFloat(b.vlambda.x.toFixed(1))
         // b.vlambda.z = parseFloat(b.vlambda.x.toFixed(1))
-
+        v2.vadd(b.vlambda, v2)
         // v2.vadd(b.vlambda, v2)
         let modd = false
         if (Math.abs(b.vlambda.x) > 400) {

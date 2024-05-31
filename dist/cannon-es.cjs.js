@@ -5347,7 +5347,9 @@ class Equation {
     // GA.spatial.x = 0
     // GA.spatial.y = 0
     // GA.spatial.z = 0
-    // console.log('solvey wolvey', bi.invMassSolve * deltalambda, bj.invMassSolve * deltalambda)
+    if (bj.invMassSolve * deltalambda > 100) {
+      console.log('solvey wolvey', bi.invMassSolve * deltalambda, bj.invMassSolve * deltalambda, GA.spatial);
+    }
     // Add to linear velocity
     // v_lambda += inv(M) * delta_lamba * G
     bi.vlambda.addScaledVector(bi.invMassSolve * deltalambda, GA.spatial, bi.vlambda);
@@ -9066,7 +9068,7 @@ class GSSolver extends Solver {
         // b.vlambda.x = parseFloat(b.vlambda.x.toFixed(1))
         // b.vlambda.y = parseFloat(b.vlambda.x.toFixed(1))
         // b.vlambda.z = parseFloat(b.vlambda.x.toFixed(1))
-
+        v2.vadd(b.vlambda, v2);
         // v2.vadd(b.vlambda, v2)
         let modd = false;
         if (Math.abs(b.vlambda.x) > 400) {
