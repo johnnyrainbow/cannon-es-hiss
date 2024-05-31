@@ -3547,6 +3547,7 @@ class Body extends EventTarget {
     pos.y += velo.y * dt;
     pos.z += this.customIndependentVelocity.z * dt;
     //test
+
     // //clear the custom velocities after applying
     // this.customIndependentVelocity.x = 0;
     // this.customIndependentVelocity.y = 0;
