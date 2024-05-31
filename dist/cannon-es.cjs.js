@@ -5489,6 +5489,7 @@ class ContactEquation extends Equation {
     const ePlusOne = this.restitution + 1;
     const GW = ePlusOne * vj.dot(n) - ePlusOne * vi.dot(n) + wj.dot(rjxn) - wi.dot(rixn);
     const GiMf = this.computeGiMf();
+    console.log("used ni", -g, a, GW, b, h, GiMf);
     const B = -g * a - GW * b - h * GiMf;
     return B;
   }
@@ -9072,7 +9073,7 @@ class GSSolver extends Solver {
           invC = invCs[j];
           lambdaj = lambda[j];
           GWlambda = c.computeGWlambda();
-          // console.log('computed lambda', GWlambda)
+          console.log('computed lambda', GWlambda);
           deltalambda = invC * (B - GWlambda - c.eps * lambdaj);
 
           // Clamp if we are not within the min/max interval
@@ -9116,42 +9117,43 @@ class GSSolver extends Solver {
         // b.vlambda.y = parseFloat(b.vlambda.x.toFixed(1))
         // b.vlambda.z = parseFloat(b.vlambda.x.toFixed(1))
         // v2.vadd(b.vlambda, v2)
-        // v2.vadd(b.vlambda, v2)
-        let modd = false;
-        if (Math.abs(b.vlambda.x) > 700) {
-          // console.log('PAPA2')
-          console.log('DID you knowww x', b.position, b.customIndependentVelocity, b.vlambda.x);
-          if (b.vlambda.x < 0) {
-            b.vlambda.x = -1000;
-          } else {
-            b.vlambda.x = 1000;
-          }
-          modd = true;
-        } else {
-          b.vlambda.x = 0;
-        }
-        //test2
-        if (Math.abs(b.vlambda.z) > 700) {
-          console.log('DID you knowww z', b.position, b.customIndependentVelocity, b.vlambda.z);
-          if (b.vlambda.z < 0) {
-            b.vlambda.z = -1000;
-          } else {
-            b.vlambda.z = 1000;
-          }
-          modd = true;
-        } else {
-          b.vlambda.z = 0;
-        }
+        v2.vadd(b.vlambda, v2);
+        // let modd = false
+        // if (Math.abs(b.vlambda.x) > 400) {
+        //   console.log('PAPA2')
+        //   console.log('DID you knowww x', b.position, b.customIndependentVelocity, b.vlambda.x)
+        //   if (b.vlambda.x < 0) {
+        //     b.vlambda.x = -2000
+        //   } else {
+        //     b.vlambda.x = 2000
+        //   }
+        //   modd = true
+        // } else {
+        //   b.vlambda.x = 0
+        // }
+        // //test2
+        // if (Math.abs(b.vlambda.z) > 400) {
+        //   console.log('DID you knowww z', b.position, b.customIndependentVelocity, b.vlambda.z)
+        //   if (b.vlambda.z < 0) {
+        //     b.vlambda.z = -2000
+        //   } else {
+        //     b.vlambda.z = 2000
+        //   }
+        //   modd = true
+        // } else {
+        //   b.vlambda.z = 0
+        // }
 
-        // modd = true;
-        if (modd) {
-          v2.vadd(b.vlambda, v2);
-          // if (Math.abs(b.vlambda.x) > 100 || Math.abs(b.vlambda.z) > 100) {
+        // // modd = true;
+        // if (modd) {
+        //   v2.vadd(b.vlambda, v2)
+        //   // if (Math.abs(b.vlambda.x) > 100 || Math.abs(b.vlambda.z) > 100) {
 
-          console.log('DID YOU KNOW YOUR vlambdaoo7?', b.vlambda);
-          // }
-          //F
-        }
+        //   console.log('DID YOU KNOW YOUR vlambdaoo7?', b.vlambda)
+        //   // }
+        //   //F
+        // }
+
         b.wlambda.vmul(b.angularFactor, b.wlambda);
         w.vadd(b.wlambda, w);
       }
