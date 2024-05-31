@@ -73,7 +73,7 @@ export class ContactEquation extends Equation {
     const GA = this.jacobianElementA
     const GB = this.jacobianElementB
     const n = this.ni
-
+    penetrationVec.y = 0
     // Caluclate cross products
     ri.cross(n, rixn)
     rj.cross(n, rjxn)

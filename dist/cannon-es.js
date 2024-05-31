@@ -5462,7 +5462,7 @@ class ContactEquation extends Equation {
     const GA = this.jacobianElementA;
     const GB = this.jacobianElementB;
     const n = this.ni;
-
+    penetrationVec.y = 0;
     // Caluclate cross products
     ri.cross(n, rixn);
     rj.cross(n, rjxn);
@@ -5509,7 +5509,7 @@ class ContactEquation extends Equation {
     this.bi.getVelocityAtWorldPoint(xi, vi);
     this.bj.getVelocityAtWorldPoint(xj, vj);
     vi.vsub(vj, relVel);
-    console.log("RELVEL", relVel);
+    console.log('RELVEL', relVel);
     return this.ni.dot(relVel);
   }
 }
