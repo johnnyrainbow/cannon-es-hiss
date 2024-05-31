@@ -82,6 +82,7 @@ export class Equation {
    * Computes the right hand side of the SPOOK equation
    */
   computeB(a: number, b: number, h: number): number {
+    console.log('computing b REGULAR')
     const GW = this.computeGW()
     const Gq = this.computeGq()
     const GiMf = this.computeGiMf()

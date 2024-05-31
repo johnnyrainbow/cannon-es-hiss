@@ -33,6 +33,8 @@ export class ContactEquation extends Equation {
   }
 
   computeB(h: number): number {
+    console.log('computing b CONTACT')
+
     const a = this.a
     const b = this.b
     const bi = this.bi
@@ -47,6 +49,12 @@ export class ContactEquation extends Equation {
     const taui = bi.torque
     const vj = bj.velocity
     const wj = bj.angularVelocity
+    wj.x = 0
+    wj.y = 0
+    wj.z = 0
+    wi.x = 0
+    wi.y = 0
+    wi.z = 0
     const fj = bj.force
     const tauj = bj.torque
     const penetrationVec = ContactEquation_computeB_temp3

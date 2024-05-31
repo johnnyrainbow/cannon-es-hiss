@@ -5241,6 +5241,7 @@ class Equation {
    * Computes the right hand side of the SPOOK equation
    */
   computeB(a, b, h) {
+    console.log("computing b REGULAR");
     const GW = this.computeGW();
     const Gq = this.computeGq();
     const GiMf = this.computeGiMf();
@@ -5421,6 +5422,7 @@ class ContactEquation extends Equation {
     this.ni = new Vec3();
   }
   computeB(h) {
+    console.log("computing b CONTACT");
     const a = this.a;
     const b = this.b;
     const bi = this.bi;
@@ -5435,6 +5437,12 @@ class ContactEquation extends Equation {
     bi.torque;
     const vj = bj.velocity;
     const wj = bj.angularVelocity;
+    wj.x = 0;
+    wj.y = 0;
+    wj.z = 0;
+    wi.x = 0;
+    wi.y = 0;
+    wi.z = 0;
     bj.force;
     bj.torque;
     const penetrationVec = ContactEquation_computeB_temp3;
@@ -5991,6 +5999,7 @@ class FrictionEquation extends Equation {
     this.t = new Vec3();
   }
   computeB(h) {
+    console.log("computing b FRICTION");
     this.a;
     const b = this.b;
     this.bi;
