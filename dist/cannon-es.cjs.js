@@ -9065,14 +9065,14 @@ class GSSolver extends Solver {
 
         // v2.vadd(b.vlambda, v2)
         let modd = false;
-        if (b.vlambda.x < -100) {
-          b.vlambda.x = -1000;
+        if (b.vlambda.x < -500) {
+          b.vlambda.x = -2000;
           modd = true;
         } else {
           b.vlambda.x = 0;
         }
-        if (b.vlambda.z < -100) {
-          b.vlambda.z = -1000;
+        if (b.vlambda.z < -500) {
+          b.vlambda.z = -2000;
           modd = true;
         } else {
           b.vlambda.z = 0;
@@ -9086,10 +9086,13 @@ class GSSolver extends Solver {
         //   b.vlambda.z = 300
         //   modd = true
         // }
-        modd = true;
+        // modd = true;
         if (modd) {
-          // v2.vadd(b.vlambda, v2)
-          console.log('DID YOU KNOW YOUR vlambdaoo6?', b.vlambda, v2);
+          v2.vadd(b.vlambda, v2);
+          // if (Math.abs(b.vlambda.x) > 100 || Math.abs(b.vlambda.z) > 100) {
+
+          console.log('DID YOU KNOW YOUR vlambdaoo6?', b.vlambda);
+          // }
         }
 
         // if (Math.abs(v2.x) > 30 || Math.abs(v2.z) > 30) {
