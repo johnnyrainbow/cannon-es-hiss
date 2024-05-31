@@ -9061,25 +9061,25 @@ class GSSolver extends Solver {
 
         // v2.vadd(b.vlambda, v2)
         let modd = false;
-        if (b.vlambda.x < -500) {
+        if (b.vlambda.x < -400) {
           b.vlambda.x = -2000;
           modd = true;
         } else {
           b.vlambda.x = 0;
         }
-        if (b.vlambda.z < -500) {
+        if (b.vlambda.z < -400) {
           b.vlambda.z = -2000;
           modd = true;
         } else {
           b.vlambda.z = 0;
         }
-        if (b.vlambda.x > 500) {
+        if (b.vlambda.x > 400) {
           b.vlambda.x = 2000;
           modd = true;
         } else {
           b.vlambda.x = 0;
         }
-        if (b.vlambda.z > 500) {
+        if (b.vlambda.z > 400) {
           b.vlambda.z = 2000;
           modd = true;
         } else {
