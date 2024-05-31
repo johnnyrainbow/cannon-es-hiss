@@ -5365,9 +5365,7 @@ class Equation {
     // GA.spatial.y = 0
     // GA.spatial.z = 0
     // console.log('FUCKS SAKE2')
-    if (bj.invMassSolve * deltalambda > 10 || bi.invMassSolve * deltalambda > 10) {
-      console.log('solvey wolvey', bi.invMassSolve * deltalambda, bj.invMassSolve * deltalambda, GA.spatial);
-    }
+    if (bj.invMassSolve * deltalambda > 10 || bi.invMassSolve * deltalambda > 10) ;
     // Add to linear velocity
     // v_lambda += inv(M) * delta_lamba * G
     bi.vlambda.addScaledVector(bi.invMassSolve * deltalambda, GA.spatial, bi.vlambda);
@@ -5495,11 +5493,11 @@ class ContactEquation extends Equation {
     const GiMf = this.computeGiMf();
 
     //TODO variants are -g, GW, giMF
-    console.log('used n', n);
-    console.log('used pen', penetrationVec);
-    console.log('used pos', bjPC, biPC);
-    // g = -2
-    console.log('used ni', -g, a, GW, b, h, GiMf);
+    // console.log('used n', n)
+    // console.log('used pen', penetrationVec)
+    // console.log('used pos', bjPC, biPC)
+    // // g = -2
+    // console.log('used ni', -g, a, GW, b, h, GiMf)
     const B = -g * a - GW * b - h * GiMf;
     return B;
   }
@@ -9060,7 +9058,7 @@ class GSSolver extends Solver {
       lambda[i] = 0.0;
       Bs[i] = c.computeB(h);
       invCs[i] = 100; //1.0 / c.computeC()
-      console.log('addedinvB', i, Bs[i]);
+      // console.log('addedinvB', i, Bs[i])
     }
     if (Neq !== 0) {
       // Reset vlambda
@@ -9132,8 +9130,9 @@ class GSSolver extends Solver {
         // v2.vadd(b.vlambda, v2)
         let modd = false;
         if (Math.abs(b.vlambda.x) > 800) {
+          b.vlambda.x = Math.round(b.vlambda.x / 100) * 100;
           // console.log('PAPA2')
-          console.log('DID you knowww x', b.position, b.customIndependentVelocity, b.vlambda.x);
+          // console.log('DID you knowww x', b.position, b.customIndependentVelocity, b.vlambda.x)
           // if (b.vlambda.x < 0) {
           //   b.vlambda.x = -1000
           // } else {
@@ -9145,7 +9144,8 @@ class GSSolver extends Solver {
         }
         //test2
         if (Math.abs(b.vlambda.z) > 800) {
-          console.log('DID you knowww z', b.position, b.customIndependentVelocity, b.vlambda.z);
+          b.vlambda.z = Math.round(b.vlambda.z / 100) * 100;
+          // console.log('DID you knowww z', b.position, b.customIndependentVelocity, b.vlambda.z)
           // if (b.vlambda.z < 0) {
           //   b.vlambda.z = -2000
           // } else {

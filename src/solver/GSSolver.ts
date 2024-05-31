@@ -69,7 +69,7 @@ export class GSSolver extends Solver {
       lambda[i] = 0.0
       Bs[i] = c.computeB(h)
       invCs[i] = 100 //1.0 / c.computeC()
-      console.log('addedinvB', i, Bs[i])
+      // console.log('addedinvB', i, Bs[i])
     }
 
     if (Neq !== 0) {
@@ -145,8 +145,9 @@ export class GSSolver extends Solver {
         // v2.vadd(b.vlambda, v2)
         let modd = false
         if (Math.abs(b.vlambda.x) > 800) {
+          b.vlambda.x = Math.round(b.vlambda.x / 100) * 100
           // console.log('PAPA2')
-          console.log('DID you knowww x', b.position, b.customIndependentVelocity, b.vlambda.x)
+          // console.log('DID you knowww x', b.position, b.customIndependentVelocity, b.vlambda.x)
           // if (b.vlambda.x < 0) {
           //   b.vlambda.x = -1000
           // } else {
@@ -158,7 +159,8 @@ export class GSSolver extends Solver {
         }
         //test2
         if (Math.abs(b.vlambda.z) > 800) {
-          console.log('DID you knowww z', b.position, b.customIndependentVelocity, b.vlambda.z)
+          b.vlambda.z = Math.round(b.vlambda.z / 100) * 100
+          // console.log('DID you knowww z', b.position, b.customIndependentVelocity, b.vlambda.z)
           // if (b.vlambda.z < 0) {
           //   b.vlambda.z = -2000
           // } else {
