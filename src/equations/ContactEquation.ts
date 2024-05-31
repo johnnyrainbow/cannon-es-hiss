@@ -56,9 +56,9 @@ export class ContactEquation extends Equation {
     wi.y = 0
     wi.z = 0
 
-    vi.x = 0
-    vi.y = 0
-    vi.z = 0
+    // vi.x = 0
+    // vi.y = 0
+    // vi.z = 0
 
     // if (bi.customIndependentVelocity.x !== 0 || bi.customIndependentVelocity.z !== 0) {
     //   vi = bi.customIndependentVelocity

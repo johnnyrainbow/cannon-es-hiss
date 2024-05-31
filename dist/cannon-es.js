@@ -5444,9 +5444,10 @@ class ContactEquation extends Equation {
     wi.x = 0;
     wi.y = 0;
     wi.z = 0;
-    vi.x = 0;
-    vi.y = 0;
-    vi.z = 0;
+
+    // vi.x = 0
+    // vi.y = 0
+    // vi.z = 0
 
     // if (bi.customIndependentVelocity.x !== 0 || bi.customIndependentVelocity.z !== 0) {
     //   vi = bi.customIndependentVelocity
@@ -9111,43 +9112,42 @@ class GSSolver extends Solver {
         // b.vlambda.y = parseFloat(b.vlambda.x.toFixed(1))
         // b.vlambda.z = parseFloat(b.vlambda.x.toFixed(1))
         // v2.vadd(b.vlambda, v2)
-        v2.vadd(b.vlambda, v2);
-        // let modd = false
-        // if (Math.abs(b.vlambda.x) > 400) {
-        //   console.log('PAPA2')
-        //   console.log('DID you knowww x', b.position, b.customIndependentVelocity, b.vlambda.x)
-        //   if (b.vlambda.x < 0) {
-        //     b.vlambda.x = -2000
-        //   } else {
-        //     b.vlambda.x = 2000
-        //   }
-        //   modd = true
-        // } else {
-        //   b.vlambda.x = 0
-        // }
-        // //test2
-        // if (Math.abs(b.vlambda.z) > 400) {
-        //   console.log('DID you knowww z', b.position, b.customIndependentVelocity, b.vlambda.z)
-        //   if (b.vlambda.z < 0) {
-        //     b.vlambda.z = -2000
-        //   } else {
-        //     b.vlambda.z = 2000
-        //   }
-        //   modd = true
-        // } else {
-        //   b.vlambda.z = 0
-        // }
+        // v2.vadd(b.vlambda, v2)
+        let modd = false;
+        if (Math.abs(b.vlambda.x) > 400) {
+          // console.log('PAPA2')
+          console.log('DID you knowww x', b.position, b.customIndependentVelocity, b.vlambda.x);
+          if (b.vlambda.x < 0) {
+            b.vlambda.x = -2000;
+          } else {
+            b.vlambda.x = 2000;
+          }
+          modd = true;
+        } else {
+          b.vlambda.x = 0;
+        }
+        //test2
+        if (Math.abs(b.vlambda.z) > 400) {
+          console.log('DID you knowww z', b.position, b.customIndependentVelocity, b.vlambda.z);
+          if (b.vlambda.z < 0) {
+            b.vlambda.z = -2000;
+          } else {
+            b.vlambda.z = 2000;
+          }
+          modd = true;
+        } else {
+          b.vlambda.z = 0;
+        }
 
-        // // modd = true;
-        // if (modd) {
-        //   v2.vadd(b.vlambda, v2)
-        //   // if (Math.abs(b.vlambda.x) > 100 || Math.abs(b.vlambda.z) > 100) {
+        // modd = true;
+        if (modd) {
+          v2.vadd(b.vlambda, v2);
+          // if (Math.abs(b.vlambda.x) > 100 || Math.abs(b.vlambda.z) > 100) {
 
-        //   console.log('DID YOU KNOW YOUR vlambdaoo7?', b.vlambda)
-        //   // }
-        //   //F
-        // }
-
+          console.log('DID YOU KNOW YOUR vlambdaoo7?', b.vlambda);
+          // }
+          //F
+        }
         b.wlambda.vmul(b.angularFactor, b.wlambda);
         w.vadd(b.wlambda, w);
       }
