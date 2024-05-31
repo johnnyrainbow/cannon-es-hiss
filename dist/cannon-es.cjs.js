@@ -5491,7 +5491,7 @@ class ContactEquation extends Equation {
     // penetrationVec.x = 0
     // penetrationVec.y = 0
     // penetrationVec.z = 0
-    const g = n.dot(penetrationVec);
+    let g = n.dot(penetrationVec);
 
     // Compute iteration
     const ePlusOne = this.restitution + 1;
@@ -5502,8 +5502,9 @@ class ContactEquation extends Equation {
     console.log('used n', n);
     console.log('used pen', penetrationVec);
     console.log('used pos', bjPC, biPC);
+    g = -2;
     console.log('used ni', -g, a, GW, b, h, GiMf);
-    const B = 2 * a - GW * b - h * GiMf;
+    const B = -g * a - GW * b - h * GiMf;
     return B;
   }
 
@@ -9131,6 +9132,7 @@ class GSSolver extends Solver {
         // b.vlambda.y = parseFloat(b.vlambda.x.toFixed(1))
         // b.vlambda.z = parseFloat(b.vlambda.x.toFixed(1))
         // v2.vadd(b.vlambda, v2)
+        console.log('DID you knowww bby', b.position, b.customIndependentVelocity, b.vlambda);
         v2.vadd(b.vlambda, v2);
         // let modd = false
         // if (Math.abs(b.vlambda.x) > 400) {
