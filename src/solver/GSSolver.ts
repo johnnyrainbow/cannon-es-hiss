@@ -140,6 +140,7 @@ export class GSSolver extends Solver {
         // v2.vadd(b.vlambda, v2)
         let modd = false
         if (Math.abs(b.vlambda.x) > 400) {
+          console.log('PAPA!')
           console.log('DID you knowww x', b.position, b.customIndependentVelocity, b.vlambda.x)
           if (b.vlambda.x < 0) {
             b.vlambda.x = -2000
