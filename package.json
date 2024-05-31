@@ -1,6 +1,6 @@
 {
-  "name": "cannon-es-gab",
-  "version": "0.20.0",
+  "name": "cannon-es",
+  "version": "0.21.0",
   "license": "MIT",
   "description": "A lightweight 3D physics engine written in JavaScript.",
   "homepage": "https://github.com/schteppe/cannon.js",
