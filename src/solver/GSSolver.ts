@@ -69,6 +69,7 @@ export class GSSolver extends Solver {
       lambda[i] = 0.0
       Bs[i] = c.computeB(h)
       invCs[i] = 1.0 / c.computeC()
+      console.log('addedinvc', i, invCs[i])
     }
 
     if (Neq !== 0) {
