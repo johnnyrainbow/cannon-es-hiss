@@ -5462,7 +5462,7 @@ class ContactEquation extends Equation {
     const GA = this.jacobianElementA;
     const GB = this.jacobianElementB;
     const n = this.ni;
-    penetrationVec.y = 0;
+
     // Caluclate cross products
     ri.cross(n, rixn);
     rj.cross(n, rjxn);
@@ -5475,9 +5475,14 @@ class ContactEquation extends Equation {
     GB.rotational.copy(rjxn);
 
     // Calculate the penetration vector
-    penetrationVec.copy(bj.position);
+    const bjPC = new Vec3().copy(bj.position);
+    const biPC = new Vec3().copy(bj.position);
+    bjPC.y = 0;
+    biPC.y = 0;
+    console.log("used pen pre", penetrationVec);
+    penetrationVec.copy(bjPC);
     penetrationVec.vadd(rj, penetrationVec);
-    penetrationVec.vsub(bi.position, penetrationVec);
+    penetrationVec.vsub(bjPC, penetrationVec);
     penetrationVec.vsub(ri, penetrationVec);
     const g = n.dot(penetrationVec);
 
@@ -5489,7 +5494,7 @@ class ContactEquation extends Equation {
     //TODO variants are -g, GW, giMF
     console.log('used n', n);
     console.log('used pen', penetrationVec);
-    console.log('used pos', bj.position, bi.position);
+    console.log('used pos', bjPC, biPC);
     console.log('used ni', -g, a, GW, b, h, GiMf);
     const B = -g * a - GW * b - h * GiMf;
     return B;
