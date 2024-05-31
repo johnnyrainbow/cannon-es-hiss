@@ -5448,12 +5448,17 @@ class ContactEquation extends Equation {
     wi.x = 0;
     wi.y = 0;
     wi.z = 0;
-    if (bi.customIndependentVelocity.x !== 0 || bi.customIndependentVelocity.z !== 0) {
-      vi = bi.customIndependentVelocity;
-    }
-    if (bj.customIndependentVelocity.x !== 0 || bj.customIndependentVelocity.z !== 0) {
-      vj = bj.customIndependentVelocity;
-    }
+    vi.x = 0;
+    vi.y = 0;
+    vi.z = 0;
+
+    // if (bi.customIndependentVelocity.x !== 0 || bi.customIndependentVelocity.z !== 0) {
+    //   vi = bi.customIndependentVelocity
+    // }
+    // if (bj.customIndependentVelocity.x !== 0 || bj.customIndependentVelocity.z !== 0) {
+    //   vj = bj.customIndependentVelocity
+    // }
+
     bj.force;
     bj.torque;
     const penetrationVec = ContactEquation_computeB_temp3;
