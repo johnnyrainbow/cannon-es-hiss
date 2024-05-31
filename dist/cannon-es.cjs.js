@@ -5343,6 +5343,7 @@ class Equation {
     const bi = this.bi;
     const bj = this.bj;
     const temp = addToWlambda_temp;
+    //spatial zero
     GA.spatial.x = 0;
     GA.spatial.y = 0;
     GA.spatial.z = 0;
