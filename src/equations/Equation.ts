@@ -150,7 +150,7 @@ export class Equation {
     wj.x = 0
     wj.y = 0
     wj.z = 0
-    console.log('computing lambda:)', vi, vj, wi, wj)
+    // console.log('computing lambda:)', vi, vj, wi, wj)
     return GA.multiplyVectors(vi, wi) + GB.multiplyVectors(vj, wj)
   }
 

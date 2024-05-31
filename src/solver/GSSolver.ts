@@ -95,7 +95,7 @@ export class GSSolver extends Solver {
           invC = invCs[j]
           lambdaj = lambda[j]
           GWlambda = c.computeGWlambda()
-          console.log('computed lambda', GWlambda)
+          // console.log('computed lambda', GWlambda)
           deltalambda = invC * (B - GWlambda - c.eps * lambdaj)
 
           // Clamp if we are not within the min/max interval
