@@ -5339,7 +5339,9 @@ class Equation {
     const bi = this.bi;
     const bj = this.bj;
     const temp = addToWlambda_temp;
-
+    GA.spatial.x = 0;
+    GA.spatial.y = 0;
+    GA.spatial.z = 0;
     // Add to linear velocity
     // v_lambda += inv(M) * delta_lamba * G
     bi.vlambda.addScaledVector(bi.invMassSolve * deltalambda, GA.spatial, bi.vlambda);
