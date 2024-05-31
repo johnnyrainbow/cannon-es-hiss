@@ -9062,7 +9062,7 @@ class GSSolver extends Solver {
         // v2.vadd(b.vlambda, v2)
         let modd = false;
         if (Math.abs(b.vlambda.x) > 400) {
-          console.log("DID you knowww x", b.vlambda.x);
+          console.log('DID you knowww x', b.position, b.vlambda.x);
           if (b.vlambda.x < 0) {
             b.vlambda.x = -2000;
           } else {
@@ -9073,7 +9073,7 @@ class GSSolver extends Solver {
           b.vlambda.x = 0;
         }
         if (Math.abs(b.vlambda.z) > 400) {
-          console.log("DID you knowww z", b.vlambda.z);
+          console.log('DID you knowww z', b.position, b.vlambda.z);
           if (b.vlambda.z < 0) {
             b.vlambda.z = -2000;
           } else {
