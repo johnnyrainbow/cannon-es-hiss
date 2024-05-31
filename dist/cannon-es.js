@@ -5479,14 +5479,14 @@ class ContactEquation extends Equation {
     const biPC = new Vec3().copy(bi.position);
     // bjPC.y = 0
     // biPC.y = 0
-    console.log('used pen pre', penetrationVec);
+    console.log('used pen pre', penetrationVec, rj, ri);
     penetrationVec.copy(bjPC);
     penetrationVec.vadd(rj, penetrationVec);
     penetrationVec.vsub(biPC, penetrationVec);
     penetrationVec.vsub(ri, penetrationVec);
-    penetrationVec.x = 0;
-    penetrationVec.y = 0;
-    penetrationVec.z = 0;
+    // penetrationVec.x = 0
+    // penetrationVec.y = 0
+    // penetrationVec.z = 0
     const g = n.dot(penetrationVec);
 
     // Compute iteration
