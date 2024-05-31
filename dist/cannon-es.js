@@ -3542,7 +3542,7 @@ class Body extends EventTarget {
     pos.x += this.customIndependentVelocity.x * dt;
     pos.y += velo.y * dt;
     pos.z += this.customIndependentVelocity.z * dt;
-
+    //test
     // //clear the custom velocities after applying
     // this.customIndependentVelocity.x = 0;
     // this.customIndependentVelocity.y = 0;
@@ -9078,6 +9078,7 @@ class GSSolver extends Solver {
         } else {
           b.vlambda.x = 0;
         }
+        //test2
         if (Math.abs(b.vlambda.z) > 400) {
           console.log('DID you knowww z', b.position, b.customIndependentVelocity, b.vlambda.z);
           if (b.vlambda.z < 0) {

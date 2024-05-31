@@ -150,7 +150,7 @@ export class GSSolver extends Solver {
         } else {
           b.vlambda.x = 0
         }
-
+        //test2
         if (Math.abs(b.vlambda.z) > 400) {
           console.log('DID you knowww z', b.position, b.customIndependentVelocity, b.vlambda.z)
           if (b.vlambda.z < 0) {
