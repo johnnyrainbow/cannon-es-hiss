@@ -6026,7 +6026,8 @@ class FrictionEquation extends Equation {
     this.t = new Vec3();
   }
   computeB(h) {
-    console.log('computing b FRICTION');
+    // console.log('computing b FRICTION')
+
     this.a;
     const b = this.b;
     this.bi;

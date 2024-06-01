@@ -21,7 +21,7 @@ export class FrictionEquation extends Equation {
   }
 
   computeB(h: number): number {
-    console.log('computing b FRICTION')
+    // console.log('computing b FRICTION')
 
     const a = this.a
     const b = this.b
