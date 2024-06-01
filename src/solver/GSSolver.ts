@@ -68,7 +68,7 @@ export class GSSolver extends Solver {
       const c = equations[i] as any
       lambda[i] = 0.0
       Bs[i] = c.computeB(h)
-      invCs[i] = 1.0 / c.computeC() // 100
+      invCs[i] = 100 //1.0 / c.computeC() // 100
       // console.log('addedinvB', i, Bs[i])
     }
 
