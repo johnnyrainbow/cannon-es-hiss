@@ -135,7 +135,7 @@ export class GSSolver extends Solver {
         b.vlambda.vmul(b.linearFactor, b.vlambda)
 
         v.vadd(b.vlambda, v)
-        v2.vadd(b.vlambda, v2)
+        // v2.vadd(b.vlambda, v2)
         if (false) {
           const posv2x = Math.abs(b.vlambda.x)
           const posv2z = Math.abs(b.vlambda.z)

@@ -9116,11 +9116,10 @@ class GSSolver extends Solver {
         //therefore, we must apply the mutation to the customIndependentVelocity also.
         //so that collisions will work.
         const v = b.velocity;
-        const v2 = b.customIndependentVelocity;
+        b.customIndependentVelocity;
         b.angularVelocity;
         b.vlambda.vmul(b.linearFactor, b.vlambda);
         v.vadd(b.vlambda, v);
-        v2.vadd(b.vlambda, v2);
       }
       // Set the `.multiplier` property of each equation
       let l = equations.length;
